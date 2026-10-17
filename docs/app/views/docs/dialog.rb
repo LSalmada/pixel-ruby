@@ -17,8 +17,8 @@ class Views::Docs::Dialog < Views::Base
             end
             DialogContent do
               DialogHeader do
-                DialogTitle { "RubyUI to the rescue" }
-                DialogDescription { "RubyUI helps you build accessible standard compliant web apps with ease" }
+                DialogTitle { "PixelRuby to the rescue" }
+                DialogDescription { "PixelRuby helps you build accessible standard compliant web apps with ease" }
               end
               DialogMiddle do
                 AspectRatio(aspect_ratio: "16/9", class: 'rounded-md overflow-hidden border') do
@@ -30,7 +30,7 @@ class Views::Docs::Dialog < Views::Base
                 end
               end
               DialogFooter do
-                Button(variant: :outline, data: { action: 'click->ruby-ui--dialog#dismiss' }) { "Cancel" }
+                Button(variant: :outline, data: { action: 'click->pixel-ruby--dialog#dismiss' }) { "Cancel" }
                 Button { "Save" }
               end
             end
@@ -47,8 +47,8 @@ class Views::Docs::Dialog < Views::Base
               end
               DialogContent(size: :sm) do
                 DialogHeader do
-                  DialogTitle { "RubyUI to the rescue" }
-                  DialogDescription { "RubyUI helps you build accessible standard compliant web apps with ease" }
+                  DialogTitle { "PixelRuby to the rescue" }
+                  DialogDescription { "PixelRuby helps you build accessible standard compliant web apps with ease" }
                 end
                 DialogMiddle do
                   AspectRatio(aspect_ratio: "16/9", class: 'rounded-md overflow-hidden border') do
@@ -60,7 +60,7 @@ class Views::Docs::Dialog < Views::Base
                   end
                 end
                 DialogFooter do
-                  Button(variant: :outline, data: { action: 'click->ruby-ui--dialog#dismiss' }) { "Cancel" }
+                  Button(variant: :outline, data: { action: 'click->pixel-ruby--dialog#dismiss' }) { "Cancel" }
                   Button { "Save" }
                 end
               end
@@ -72,8 +72,8 @@ class Views::Docs::Dialog < Views::Base
               end
               DialogContent(size: :lg) do
                 DialogHeader do
-                  DialogTitle { "RubyUI to the rescue" }
-                  DialogDescription { "RubyUI helps you build accessible standard compliant web apps with ease" }
+                  DialogTitle { "PixelRuby to the rescue" }
+                  DialogDescription { "PixelRuby helps you build accessible standard compliant web apps with ease" }
                 end
                 DialogMiddle do
                   AspectRatio(aspect_ratio: "16/9", class: 'rounded-md overflow-hidden border') do
@@ -85,7 +85,7 @@ class Views::Docs::Dialog < Views::Base
                   end
                 end
                 DialogFooter do
-                  Button(variant: :outline, data: { action: 'click->ruby-ui--dialog#dismiss' }) { "Cancel" }
+                  Button(variant: :outline, data: { action: 'click->pixel-ruby--dialog#dismiss' }) { "Cancel" }
                   Button { "Save" }
                 end
               end

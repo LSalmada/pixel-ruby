@@ -1,1 +1,0 @@
-../../../../../gem/lib/ruby_ui/collapsible/collapsible_controller.js

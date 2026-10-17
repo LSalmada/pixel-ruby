@@ -3,11 +3,11 @@
 class Views::Docs::GettingStarted::CustomizingComponents < Views::Base
   def view_template
     div(class: "max-w-2xl mx-auto w-full py-10 space-y-10") do
-      render Docs::Header.new(title: "Customizing components", description: "When theming doesn't suffice, RubyUI allows you to tailor the components to your specific needs.")
+      render Docs::Header.new(title: "Customizing components", description: "When theming doesn't suffice, PixelRuby allows you to tailor the components to your specific needs.")
 
       div(class: "space-y-4") do
         Heading(level: 2) { "Introduction" }
-        Text { "While theming provides a powerful tool for modifying aspects such as fonts, brand colors, and border attributes, there may be instances where you need to directly customize the components. RubyUI is designed to facilitate this process with ease." }
+        Text { "While theming provides a powerful tool for modifying aspects such as fonts, brand colors, and border attributes, there may be instances where you need to directly customize the components. PixelRuby is designed to facilitate this process with ease." }
       end
 
       div(class: "space-y-4") do
@@ -92,9 +92,9 @@ class Views::Docs::GettingStarted::CustomizingComponents < Views::Base
       div(class: "space-y-4") do
         Heading(level: 2) { "Learning from shadcn/ui" }
         Text do
-          plain "RubyUI components are inspired by "
+          plain "PixelRuby components are inspired by "
           InlineLink(href: "https://ui.shadcn.com") { "shadcn/ui" }
-          plain ", which has an extensive collection of beautifully designed components. When customizing RubyUI components, we recommend checking the "
+          plain ", which has an extensive collection of beautifully designed components. When customizing PixelRuby components, we recommend checking the "
           InlineLink(href: "https://ui.shadcn.com/docs/components") { "shadcn/ui component documentation" }
           plain " for reference on Tailwind CSS class implementations."
         end
@@ -114,7 +114,7 @@ class Views::Docs::GettingStarted::CustomizingComponents < Views::Base
         Text do
           plain "If you've implemented a component locally that exists in "
           InlineLink(href: "https://ui.shadcn.com/docs/components") { "shadcn/ui" }
-          plain " but isn't yet available in RubyUI, we'd love for you to contribute it back to the community!"
+          plain " but isn't yet available in PixelRuby, we'd love for you to contribute it back to the community!"
         end
         Text do
           plain "To contribute a new component:"
@@ -122,14 +122,14 @@ class Views::Docs::GettingStarted::CustomizingComponents < Views::Base
         Components.TypographyList(numbered: true) do
           Components.TypographyListItem do
             plain "Check the "
-            InlineLink(href: "https://github.com/ruby-ui/ruby_ui") { "RubyUI GitHub repository" }
+            InlineLink(href: "https://github.com/ruby-ui/ruby_ui") { "PixelRuby GitHub repository" }
             plain " to see if the component is already planned"
           end
           Components.TypographyListItem { "Open an issue or discussion to propose the new component" }
           Components.TypographyListItem { "Submit a pull request with your implementation" }
         end
         Text do
-          plain "By contributing, you help expand the RubyUI ecosystem and make it easier for other Ruby developers to build beautiful interfaces."
+          plain "By contributing, you help expand the PixelRuby ecosystem and make it easier for other Ruby developers to build beautiful interfaces."
         end
       end
     end
@@ -141,7 +141,7 @@ class Views::Docs::GettingStarted::CustomizingComponents < Views::Base
     <<~RUBY
       # frozen_string_literal: true
 
-      module RubyUI
+      module PixelRuby
         class Alert < Base
           def initialize(variant: nil, **attrs)
             @variant = variant

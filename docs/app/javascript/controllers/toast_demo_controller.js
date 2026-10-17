@@ -15,7 +15,7 @@ const PRESETS = {
 export default class extends Controller {
   fire(e) {
     const kind = e.params.kind || "default"
-    const t = window.RubyUI?.toast
+    const t = window.PixelRuby?.toast
     if (!t) return
 
     if (kind === "promise") {
@@ -42,7 +42,7 @@ export default class extends Controller {
 
   position(e) {
     const position = e.params.position || "bottom-right"
-    window.dispatchEvent(new CustomEvent("ruby-ui:toast", {
+    window.dispatchEvent(new CustomEvent("pixel-ruby:toast", {
       detail: {
         variant: "default",
         title: `Position: ${position}`,
@@ -53,6 +53,6 @@ export default class extends Controller {
   }
 
   dismissAll() {
-    window.RubyUI?.toast.dismiss()
+    window.PixelRuby?.toast.dismiss()
   }
 }

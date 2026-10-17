@@ -10,116 +10,116 @@ application.register("iframe-theme", IframeThemeController)
 import MessageScrollerChatController from "./message_scroller_chat_controller"
 application.register("message-scroller-chat", MessageScrollerChatController)
 
-import RubyUi__AccordionController from "./ruby_ui/accordion_controller"
-application.register("ruby-ui--accordion", RubyUi__AccordionController)
+import PixelRuby__AccordionController from "./pixel_ruby/accordion_controller"
+application.register("pixel-ruby--accordion", PixelRuby__AccordionController)
 
-import RubyUi__AlertDialogController from "./ruby_ui/alert_dialog_controller"
-application.register("ruby-ui--alert-dialog", RubyUi__AlertDialogController)
+import PixelRuby__AlertDialogController from "./pixel_ruby/alert_dialog_controller"
+application.register("pixel-ruby--alert-dialog", PixelRuby__AlertDialogController)
 
-import RubyUi__AvatarController from "./ruby_ui/avatar_controller"
-application.register("ruby-ui--avatar", RubyUi__AvatarController)
+import PixelRuby__AvatarController from "./pixel_ruby/avatar_controller"
+application.register("pixel-ruby--avatar", PixelRuby__AvatarController)
 
-import RubyUi__CalendarController from "./ruby_ui/calendar_controller"
-application.register("ruby-ui--calendar", RubyUi__CalendarController)
+import PixelRuby__CalendarController from "./pixel_ruby/calendar_controller"
+application.register("pixel-ruby--calendar", PixelRuby__CalendarController)
 
-import RubyUi__CalendarInputController from "./ruby_ui/calendar_input_controller"
-application.register("ruby-ui--calendar-input", RubyUi__CalendarInputController)
+import PixelRuby__CalendarInputController from "./pixel_ruby/calendar_input_controller"
+application.register("pixel-ruby--calendar-input", PixelRuby__CalendarInputController)
 
-import RubyUi__CarouselController from "./ruby_ui/carousel_controller"
-application.register("ruby-ui--carousel", RubyUi__CarouselController)
+import PixelRuby__CarouselController from "./pixel_ruby/carousel_controller"
+application.register("pixel-ruby--carousel", PixelRuby__CarouselController)
 
-import RubyUi__ChartController from "./ruby_ui/chart_controller"
-application.register("ruby-ui--chart", RubyUi__ChartController)
+import PixelRuby__ChartController from "./pixel_ruby/chart_controller"
+application.register("pixel-ruby--chart", PixelRuby__ChartController)
 
-import RubyUi__CheckboxGroupController from "./ruby_ui/checkbox_group_controller"
-application.register("ruby-ui--checkbox-group", RubyUi__CheckboxGroupController)
+import PixelRuby__CheckboxGroupController from "./pixel_ruby/checkbox_group_controller"
+application.register("pixel-ruby--checkbox-group", PixelRuby__CheckboxGroupController)
 
-import RubyUi__ClipboardController from "./ruby_ui/clipboard_controller"
-application.register("ruby-ui--clipboard", RubyUi__ClipboardController)
+import PixelRuby__ClipboardController from "./pixel_ruby/clipboard_controller"
+application.register("pixel-ruby--clipboard", PixelRuby__ClipboardController)
 
-import RubyUi__CollapsibleController from "./ruby_ui/collapsible_controller"
-application.register("ruby-ui--collapsible", RubyUi__CollapsibleController)
+import PixelRuby__CollapsibleController from "./pixel_ruby/collapsible_controller"
+application.register("pixel-ruby--collapsible", PixelRuby__CollapsibleController)
 
-import RubyUi__ComboboxController from "./ruby_ui/combobox_controller"
-application.register("ruby-ui--combobox", RubyUi__ComboboxController)
+import PixelRuby__ComboboxController from "./pixel_ruby/combobox_controller"
+application.register("pixel-ruby--combobox", PixelRuby__ComboboxController)
 
-import RubyUi__CommandController from "./ruby_ui/command_controller"
-application.register("ruby-ui--command", RubyUi__CommandController)
+import PixelRuby__CommandController from "./pixel_ruby/command_controller"
+application.register("pixel-ruby--command", PixelRuby__CommandController)
 
-import RubyUi__CommandDialogController from "./ruby_ui/command_dialog_controller"
-application.register("ruby-ui--command-dialog", RubyUi__CommandDialogController)
+import PixelRuby__CommandDialogController from "./pixel_ruby/command_dialog_controller"
+application.register("pixel-ruby--command-dialog", PixelRuby__CommandDialogController)
 
-import RubyUi__ContextMenuController from "./ruby_ui/context_menu_controller"
-application.register("ruby-ui--context-menu", RubyUi__ContextMenuController)
+import PixelRuby__ContextMenuController from "./pixel_ruby/context_menu_controller"
+application.register("pixel-ruby--context-menu", PixelRuby__ContextMenuController)
 
-import RubyUi__DataTableColumnVisibilityController from "./ruby_ui/data_table_column_visibility_controller"
-application.register("ruby-ui--data-table-column-visibility", RubyUi__DataTableColumnVisibilityController)
+import PixelRuby__DataTableColumnVisibilityController from "./pixel_ruby/data_table_column_visibility_controller"
+application.register("pixel-ruby--data-table-column-visibility", PixelRuby__DataTableColumnVisibilityController)
 
-import RubyUi__DataTableController from "./ruby_ui/data_table_controller"
-application.register("ruby-ui--data-table", RubyUi__DataTableController)
+import PixelRuby__DataTableController from "./pixel_ruby/data_table_controller"
+application.register("pixel-ruby--data-table", PixelRuby__DataTableController)
 
-import RubyUi__DataTableSearchController from "./ruby_ui/data_table_search_controller"
-application.register("ruby-ui--data-table-search", RubyUi__DataTableSearchController)
+import PixelRuby__DataTableSearchController from "./pixel_ruby/data_table_search_controller"
+application.register("pixel-ruby--data-table-search", PixelRuby__DataTableSearchController)
 
-import RubyUi__DialogController from "./ruby_ui/dialog_controller"
-application.register("ruby-ui--dialog", RubyUi__DialogController)
+import PixelRuby__DialogController from "./pixel_ruby/dialog_controller"
+application.register("pixel-ruby--dialog", PixelRuby__DialogController)
 
-import RubyUi__DropdownMenuController from "./ruby_ui/dropdown_menu_controller"
-application.register("ruby-ui--dropdown-menu", RubyUi__DropdownMenuController)
+import PixelRuby__DropdownMenuController from "./pixel_ruby/dropdown_menu_controller"
+application.register("pixel-ruby--dropdown-menu", PixelRuby__DropdownMenuController)
 
-import RubyUi__FormFieldController from "./ruby_ui/form_field_controller"
-application.register("ruby-ui--form-field", RubyUi__FormFieldController)
+import PixelRuby__FormFieldController from "./pixel_ruby/form_field_controller"
+application.register("pixel-ruby--form-field", PixelRuby__FormFieldController)
 
-import RubyUi__HoverCardController from "./ruby_ui/hover_card_controller"
-application.register("ruby-ui--hover-card", RubyUi__HoverCardController)
+import PixelRuby__HoverCardController from "./pixel_ruby/hover_card_controller"
+application.register("pixel-ruby--hover-card", PixelRuby__HoverCardController)
 
-import RubyUi__InputOtpController from "./ruby_ui/input_otp_controller"
-application.register("ruby-ui--input-otp", RubyUi__InputOtpController)
+import PixelRuby__InputOtpController from "./pixel_ruby/input_otp_controller"
+application.register("pixel-ruby--input-otp", PixelRuby__InputOtpController)
 
-import RubyUi__MaskedInputController from "./ruby_ui/masked_input_controller"
-application.register("ruby-ui--masked-input", RubyUi__MaskedInputController)
+import PixelRuby__MaskedInputController from "./pixel_ruby/masked_input_controller"
+application.register("pixel-ruby--masked-input", PixelRuby__MaskedInputController)
 
-import RubyUi__MessageScrollerController from "./ruby_ui/message_scroller_controller"
-application.register("ruby-ui--message-scroller", RubyUi__MessageScrollerController)
+import PixelRuby__MessageScrollerController from "./pixel_ruby/message_scroller_controller"
+application.register("pixel-ruby--message-scroller", PixelRuby__MessageScrollerController)
 
-import RubyUi__PopoverController from "./ruby_ui/popover_controller"
-application.register("ruby-ui--popover", RubyUi__PopoverController)
+import PixelRuby__PopoverController from "./pixel_ruby/popover_controller"
+application.register("pixel-ruby--popover", PixelRuby__PopoverController)
 
-import RubyUi__SelectController from "./ruby_ui/select_controller"
-application.register("ruby-ui--select", RubyUi__SelectController)
+import PixelRuby__SelectController from "./pixel_ruby/select_controller"
+application.register("pixel-ruby--select", PixelRuby__SelectController)
 
-import RubyUi__SelectItemController from "./ruby_ui/select_item_controller"
-application.register("ruby-ui--select-item", RubyUi__SelectItemController)
+import PixelRuby__SelectItemController from "./pixel_ruby/select_item_controller"
+application.register("pixel-ruby--select-item", PixelRuby__SelectItemController)
 
-import RubyUi__SheetContentController from "./ruby_ui/sheet_content_controller"
-application.register("ruby-ui--sheet-content", RubyUi__SheetContentController)
+import PixelRuby__SheetContentController from "./pixel_ruby/sheet_content_controller"
+application.register("pixel-ruby--sheet-content", PixelRuby__SheetContentController)
 
-import RubyUi__SheetController from "./ruby_ui/sheet_controller"
-application.register("ruby-ui--sheet", RubyUi__SheetController)
+import PixelRuby__SheetController from "./pixel_ruby/sheet_controller"
+application.register("pixel-ruby--sheet", PixelRuby__SheetController)
 
-import RubyUi__SidebarController from "./ruby_ui/sidebar_controller"
-application.register("ruby-ui--sidebar", RubyUi__SidebarController)
+import PixelRuby__SidebarController from "./pixel_ruby/sidebar_controller"
+application.register("pixel-ruby--sidebar", PixelRuby__SidebarController)
 
-import RubyUi__TabsController from "./ruby_ui/tabs_controller"
-application.register("ruby-ui--tabs", RubyUi__TabsController)
+import PixelRuby__TabsController from "./pixel_ruby/tabs_controller"
+application.register("pixel-ruby--tabs", PixelRuby__TabsController)
 
-import RubyUi__ThemeToggleController from "./ruby_ui/theme_toggle_controller"
-application.register("ruby-ui--theme-toggle", RubyUi__ThemeToggleController)
+import PixelRuby__ThemeToggleController from "./pixel_ruby/theme_toggle_controller"
+application.register("pixel-ruby--theme-toggle", PixelRuby__ThemeToggleController)
 
-import RubyUi__ToastController from "./ruby_ui/toast_controller"
-application.register("ruby-ui--toast", RubyUi__ToastController)
+import PixelRuby__ToastController from "./pixel_ruby/toast_controller"
+application.register("pixel-ruby--toast", PixelRuby__ToastController)
 
-import RubyUi__ToasterController from "./ruby_ui/toaster_controller"
-application.register("ruby-ui--toaster", RubyUi__ToasterController)
+import PixelRuby__ToasterController from "./pixel_ruby/toaster_controller"
+application.register("pixel-ruby--toaster", PixelRuby__ToasterController)
 
-import RubyUi__ToggleController from "./ruby_ui/toggle_controller"
-application.register("ruby-ui--toggle", RubyUi__ToggleController)
+import PixelRuby__ToggleController from "./pixel_ruby/toggle_controller"
+application.register("pixel-ruby--toggle", PixelRuby__ToggleController)
 
-import RubyUi__ToggleGroupController from "./ruby_ui/toggle_group_controller"
-application.register("ruby-ui--toggle-group", RubyUi__ToggleGroupController)
+import PixelRuby__ToggleGroupController from "./pixel_ruby/toggle_group_controller"
+application.register("pixel-ruby--toggle-group", PixelRuby__ToggleGroupController)
 
-import RubyUi__TooltipController from "./ruby_ui/tooltip_controller"
-application.register("ruby-ui--tooltip", RubyUi__TooltipController)
+import PixelRuby__TooltipController from "./pixel_ruby/tooltip_controller"
+application.register("pixel-ruby--tooltip", PixelRuby__TooltipController)
 
 import SidebarMenuController from "./sidebar_menu_controller"
 application.register("sidebar-menu", SidebarMenuController)

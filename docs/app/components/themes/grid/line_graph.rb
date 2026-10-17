@@ -5,12 +5,12 @@ module Components
     module Grid
       class LineGraph < Components::Base
         def view_template
-          RubyUI::Card(class: "p-8 space-y-6") do
+          PixelRuby::Card(class: "p-8 space-y-6") do
             div do
               Text(size: "4", weight: "semibold") { "Phlex Success" }
               Text(size: "2", class: "text-muted-foreground") { "Number of stars on the Phlex Github repo" }
             end
-            RubyUI::Chart(options: chart_options)
+            PixelRuby::Chart(options: chart_options)
           end
         end
 

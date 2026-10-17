@@ -1,11 +1,11 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/app/assets/images/logo_dark.svg">
-    <img alt="RubyUI" src="docs/app/assets/images/logo.svg" width="200">
+    <img alt="PixelRuby" src="docs/app/assets/images/logo.svg" width="200">
   </picture>
 </p>
 
-# RubyUI
+# PixelRuby
 
 [![CI](https://github.com/ruby-ui/ruby_ui/actions/workflows/ci.yml/badge.svg)](https://github.com/ruby-ui/ruby_ui/actions/workflows/ci.yml)
 [![Gem Version](https://badge.fury.io/rb/ruby_ui.svg)](https://rubygems.org/gems/ruby_ui)
@@ -15,8 +15,8 @@ Beautifully designed components that you can copy and paste into your apps. Acce
 This repository is a **monorepo** with two sibling projects:
 
 ```
-ruby_ui/
-├── gem/    # the ruby_ui gem (lib/, generators, tests, gemspec)
+pixel_ruby/
+├── gem/    # the pixel_ruby gem (lib/, generators, tests, gemspec)
 └── docs/   # the Rails app that powers https://rubyui.com
 ```
 
@@ -30,7 +30,7 @@ ruby_ui/
 
 | Path | What lives here |
 | --- | --- |
-| [`gem/`](gem/) | The `ruby_ui` gem (`gem build`, `gem release` from this folder). |
+| [`gem/`](gem/) | The `pixel_ruby` gem (`gem build`, `gem release` from this folder). |
 | [`docs/`](docs/) | Rails 8 app for the documentation site. Consumes the local gem via `path: "../gem"`. |
 | [`.github/workflows/ci.yml`](.github/workflows/ci.yml) | Unified CI: gem tests on Ruby 3.3 + 3.4, Rails docs app tests, and a docker-build job that publishes the docs devcontainer to ghcr.io. |
 
@@ -51,7 +51,7 @@ pnpm install
 bin/dev                   # http://localhost:3000
 ```
 
-Editing files under `gem/lib/ruby_ui/` is reflected immediately when running the docs app — no `bundle update`, no rebuild, no PR coordination across two repos.
+Editing files under `gem/lib/pixel_ruby/` is reflected immediately when running the docs app — no `bundle update`, no rebuild, no PR coordination across two repos.
 
 ## License
 

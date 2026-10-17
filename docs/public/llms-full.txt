@@ -1,13 +1,13 @@
-# RubyUI Full LLM Reference
+# PixelRuby Full LLM Reference
 
-> RubyUI provides accessible, customizable UI components for Ruby and Rails applications. It is built on Phlex for Ruby-rendered views, Tailwind CSS for styling, and Stimulus for small client-side behaviors.
+> PixelRuby provides accessible, customizable UI components for Ruby and Rails applications. It is built on Phlex for Ruby-rendered views, Tailwind CSS for styling, and Stimulus for small client-side behaviors.
 
 This file expands the curated /llms.txt map into a compact reference that can be loaded as one document. It is intentionally prose-heavy and link-rich so language models can answer common questions without crawling the whole documentation site.
 
 ## Product model
 
-- RubyUI is distributed as the `ruby_ui` gem.
-- RubyUI is intended primarily for development-time generation and copy-paste workflows.
+- PixelRuby is distributed as the `pixel_ruby` gem.
+- PixelRuby is intended primarily for development-time generation and copy-paste workflows.
 - Components are Ruby classes that render HTML through Phlex.
 - Styling uses Tailwind CSS utilities and CSS variables.
 - Interactive components use lightweight Stimulus controllers.
@@ -15,9 +15,9 @@ This file expands the curated /llms.txt map into a compact reference that can be
 
 ## Common installation workflow
 
-1. Add the gem to a Rails application with `bundle add ruby_ui --group development --require false`.
-2. Run `bin/rails g ruby_ui:install` to install RubyUI support files.
-3. Generate a component with `bin/rails g ruby_ui:component ComponentName`, for example `bin/rails g ruby_ui:component Button`.
+1. Add the gem to a Rails application with `bundle add pixel_ruby --group development --require false`.
+2. Run `bin/rails g pixel_ruby:install` to install PixelRuby support files.
+3. Generate a component with `bin/rails g pixel_ruby:component ComponentName`, for example `bin/rails g pixel_ruby:component Button`.
 4. Customize generated Ruby, Tailwind classes, and Stimulus controllers inside the host app as needed.
 
 ## Important implementation notes
@@ -33,7 +33,7 @@ This file expands the curated /llms.txt map into a compact reference that can be
 ### Introduction
 
 - URL: https://rubyui.com/docs/introduction
-- Summary: Overview of RubyUI, its Phlex, Tailwind CSS, and Stimulus foundations, and its design goals.
+- Summary: Overview of PixelRuby, its Phlex, Tailwind CSS, and Stimulus foundations, and its design goals.
 
 ### Installation
 
@@ -43,42 +43,42 @@ This file expands the curated /llms.txt map into a compact reference that can be
 ### Rails - JS Bundler
 
 - URL: https://rubyui.com/docs/installation/rails_bundler
-- Summary: Install RubyUI in a Rails app that uses JavaScript bundling.
+- Summary: Install PixelRuby in a Rails app that uses JavaScript bundling.
 
 ### Rails - Importmaps
 
 - URL: https://rubyui.com/docs/installation/rails_importmaps
-- Summary: Install RubyUI in a Rails app that uses import maps.
+- Summary: Install PixelRuby in a Rails app that uses import maps.
 
 ### Theming
 
 - URL: https://rubyui.com/docs/theming
-- Summary: Use CSS variables and shadcn/ui-compatible theme tokens with RubyUI.
+- Summary: Use CSS variables and shadcn/ui-compatible theme tokens with PixelRuby.
 
 ### Dark mode
 
 - URL: https://rubyui.com/docs/dark_mode
-- Summary: Configure dark mode with the Tailwind CSS class strategy and RubyUI theme toggle.
+- Summary: Configure dark mode with the Tailwind CSS class strategy and PixelRuby theme toggle.
 
 ### Customizing components
 
 - URL: https://rubyui.com/docs/customizing_components
-- Summary: Adapt generated RubyUI components when theme-level customization is not enough.
+- Summary: Adapt generated PixelRuby components when theme-level customization is not enough.
 
 ### Components
 
 - URL: https://rubyui.com/docs/components
-- Summary: Catalog of available RubyUI components.
+- Summary: Catalog of available PixelRuby components.
 
 ### Changelog
 
 - URL: https://rubyui.com/docs/changelog
-- Summary: Recent RubyUI component and documentation changes.
+- Summary: Recent PixelRuby component and documentation changes.
 
 ### MCP Server
 
 - URL: https://rubyui.com/docs/mcp
-- Summary: Connect AI agents to Ruby UI components, source, examples, and install commands via the Model Context Protocol.
+- Summary: Connect AI agents to Pixel Ruby components, source, examples, and install commands via the Model Context Protocol.
 
 
 ## Component catalog
@@ -354,7 +354,7 @@ This file expands the curated /llms.txt map into a compact reference that can be
 ### Data Table Demo
 
 - URL: https://rubyui.com/docs/data_table_demo
-- Summary: Interactive data table example using RubyUI table primitives.
+- Summary: Interactive data table example using PixelRuby table primitives.
 
 ### Sidebar Example
 
@@ -369,12 +369,12 @@ This file expands the curated /llms.txt map into a compact reference that can be
 
 ## Themes
 
-- [Themes](https://rubyui.com/themes/default): Preview and copy hand-picked themes that are compatible with RubyUI and shadcn/ui token conventions.
+- [Themes](https://rubyui.com/themes/default): Preview and copy hand-picked themes that are compatible with PixelRuby and shadcn/ui token conventions.
 
 ## External resources
 
-- [GitHub repository](https://github.com/ruby-ui/ruby_ui): Source code for the RubyUI gem and documentation app.
-- [RubyGems package](https://rubygems.org/gems/ruby_ui): Published ruby_ui gem package.
+- [GitHub repository](https://github.com/ruby-ui/ruby_ui): Source code for the PixelRuby gem and documentation app.
+- [RubyGems package](https://rubygems.org/gems/ruby_ui): Published pixel_ruby gem package.
 
 ## Companion machine-readable files
 

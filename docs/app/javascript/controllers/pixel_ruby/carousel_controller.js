@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/carousel/carousel_controller.js

@@ -1,0 +1,222 @@
+import { Controller } from "@hotwired/stimulus";
+import { computePosition, autoUpdate, offset, flip } from "@floating-ui/dom";
+
+export default class extends Controller {
+  static targets = ["trigger", "content", "panel", "input", "value", "item"];
+  static values = { open: Boolean };
+  static outlets = ["pixel-ruby--select-item"];
+
+  constructor(...args) {
+    super(...args);
+    this.cleanup;
+  }
+
+  connect() {
+    this.setFloatingElement();
+    this.generateItemsIds();
+  }
+
+  disconnect() {
+    // Nothing is left to wait for the exit animation, so apply the pending hide now.
+    if (this.hasPanelTarget) this.settleExit(this.panelTarget);
+    this.cleanup();
+  }
+
+  selectItem(event) {
+    event.preventDefault();
+
+    this.pixelRubySelectItemOutlets.forEach((item) =>
+      item.handleSelectItem(event),
+    );
+
+    const oldValue = this.inputTarget.value;
+    const newValue = event.target.dataset.value;
+
+    this.inputTarget.value = newValue;
+    this.valueTarget.innerText = event.target.innerText;
+
+    this.dispatchOnChange(oldValue, newValue);
+    this.closeContent();
+  }
+
+  onClick() {
+    this.toogleContent();
+
+    if (this.openValue) {
+      this.setFocusAndCurrent();
+    } else {
+      this.resetCurrent();
+    }
+  }
+
+  handleKeyDown(event) {
+    event.preventDefault();
+
+    const currentIndex = this.itemTargets.findIndex(
+      (item) => item.getAttribute("aria-current") === "true",
+    );
+
+    if (currentIndex + 1 < this.itemTargets.length) {
+      this.itemTargets[currentIndex].removeAttribute("aria-current");
+      this.setAriaCurrentAndActiveDescendant(currentIndex + 1);
+    }
+  }
+
+  handleKeyUp(event) {
+    event.preventDefault();
+
+    const currentIndex = this.itemTargets.findIndex(
+      (item) => item.getAttribute("aria-current") === "true",
+    );
+
+    if (currentIndex > 0) {
+      this.itemTargets[currentIndex].removeAttribute("aria-current");
+      this.setAriaCurrentAndActiveDescendant(currentIndex - 1);
+    }
+  }
+
+  handleEsc(event) {
+    event.preventDefault();
+    this.closeContent();
+  }
+
+  setFocusAndCurrent() {
+    const selectedItem = this.itemTargets.find(
+      (item) => item.getAttribute("aria-selected") === "true",
+    );
+
+    if (selectedItem) {
+      selectedItem.focus({ preventScroll: true });
+      selectedItem.setAttribute("aria-current", "true");
+      this.triggerTarget.setAttribute(
+        "aria-activedescendant",
+        selectedItem.getAttribute("id"),
+      );
+    } else {
+      this.itemTarget.focus({ preventScroll: true });
+      this.itemTarget.setAttribute("aria-current", "true");
+      this.triggerTarget.setAttribute(
+        "aria-activedescendant",
+        this.itemTarget.getAttribute("id"),
+      );
+    }
+  }
+
+  resetCurrent() {
+    this.itemTargets.forEach((item) => item.removeAttribute("aria-current"));
+  }
+
+  clickOutside(event) {
+    if (!this.openValue) return;
+    if (this.element.contains(event.target)) return;
+
+    event.preventDefault();
+    this.toogleContent();
+  }
+
+  toogleContent() {
+    this.openValue = !this.openValue;
+    this.triggerTarget.setAttribute("aria-expanded", this.openValue);
+
+    if (this.openValue) {
+      this.contentTarget.classList.remove("hidden");
+      this.panelTarget.dataset.state = "open";
+      return;
+    }
+
+    this.panelTarget.dataset.state = "closed";
+    this.hideAfterExitAnimation(this.panelTarget);
+  }
+
+  afterExit() {
+    this.contentTarget.classList.add("hidden");
+  }
+
+  // Overlay exit — the same block in every overlay controller, so keep them in sync.
+  exitAnimationNames = new WeakMap();
+
+  hideAfterExitAnimation(animated) {
+    const exitAnimations = animated
+      .getAnimations()
+      .filter((animation) => animation instanceof CSSAnimation);
+
+    // No exit animation, or no box to run it in: animationend would never fire.
+    if (exitAnimations.length === 0) {
+      this.settleExit(animated);
+      return;
+    }
+
+    this.exitAnimationNames.set(animated, exitAnimations.map((animation) => animation.animationName));
+    animated.addEventListener("animationend", this.handleExitAnimationEnd);
+    animated.addEventListener("animationcancel", this.handleExitAnimationEnd);
+  }
+
+  handleExitAnimationEnd = (event) => {
+    // animationend bubbles — an animated child must not hide its container.
+    if (event.target !== event.currentTarget) return;
+    // Closing mid-open cancels the enter animation; only the exit run settles this.
+    if (!this.exitAnimationNames.get(event.currentTarget)?.includes(event.animationName)) return;
+
+    this.settleExit(event.currentTarget);
+  };
+
+  settleExit(animated) {
+    animated.removeEventListener("animationend", this.handleExitAnimationEnd);
+    animated.removeEventListener("animationcancel", this.handleExitAnimationEnd);
+    // Reopened mid-exit: it is on its way back in, leave it visible.
+    if (animated.dataset.state !== "closed") return;
+
+    this.afterExit(animated);
+  }
+
+  setFloatingElement() {
+    this.cleanup = autoUpdate(this.triggerTarget, this.contentTarget, () => {
+      computePosition(this.triggerTarget, this.contentTarget, {
+        middleware: [offset(4), flip()],
+      }).then(({ x, y }) => {
+        Object.assign(this.contentTarget.style, {
+          left: `${x}px`,
+          top: `${y}px`,
+        });
+      });
+    });
+  }
+
+  generateItemsIds() {
+    const contentId = this.contentTarget.getAttribute("id");
+    this.triggerTarget.setAttribute("aria-controls", contentId);
+
+    this.itemTargets.forEach((item, index) => {
+      item.id = `${contentId}-${index}`;
+    });
+  }
+
+  setAriaCurrentAndActiveDescendant(currentIndex) {
+    const currentItem = this.itemTargets[currentIndex];
+    currentItem.focus({ preventScroll: true });
+    currentItem.setAttribute("aria-current", "true");
+    this.triggerTarget.setAttribute(
+      "aria-activedescendant",
+      currentItem.getAttribute("id"),
+    );
+  }
+
+  closeContent() {
+    this.toogleContent();
+    this.resetCurrent();
+
+    this.triggerTarget.setAttribute("aria-activedescendant", true);
+    this.triggerTarget.focus({ preventScroll: true });
+  }
+
+  dispatchOnChange(oldValue, newValue) {
+    if (oldValue === newValue) return;
+
+    const event = new InputEvent("change", {
+      bubbles: true,
+      cancelable: true,
+    });
+
+    this.inputTarget.dispatchEvent(event);
+  }
+}

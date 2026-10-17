@@ -174,8 +174,8 @@ class Views::Docs::MessageScroller < Views::Base
           MessageScrollerProvider(auto_scroll: false) do
             div(class: "space-y-2") do
               div(class: "flex gap-2") do
-                Button(variant: :outline, size: :sm, data: {action: "click->ruby-ui--message-scroller#scrollToStart"}) { "Jump to start" }
-                Button(variant: :outline, size: :sm, data: {action: "click->ruby-ui--message-scroller#scrollToEnd"}) { "Jump to latest" }
+                Button(variant: :outline, size: :sm, data: {action: "click->pixel-ruby--message-scroller#scrollToStart"}) { "Jump to start" }
+                Button(variant: :outline, size: :sm, data: {action: "click->pixel-ruby--message-scroller#scrollToEnd"}) { "Jump to latest" }
               end
               div(class: "h-72 w-full rounded-xl border bg-background") do
                 MessageScroller do

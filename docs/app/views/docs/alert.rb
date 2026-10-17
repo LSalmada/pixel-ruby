@@ -13,7 +13,7 @@ class Views::Docs::Alert < Views::Base
           Alert do
             rocket_icon
             AlertTitle { "Pro tip" }
-            AlertDescription { "With RubyUI you'll ship faster." }
+            AlertDescription { "With PixelRuby you'll ship faster." }
           end
         RUBY
       end
@@ -52,7 +52,7 @@ class Views::Docs::Alert < Views::Base
           Alert(variant: :success) do
             check_icon
             AlertTitle { "Installation successful" }
-            AlertDescription { "You're all set to start using RubyUI in your application." }
+            AlertDescription { "You're all set to start using PixelRuby in your application." }
           end
         RUBY
       end

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require "ruby_ui/mcp/tools/get_item_examples_from_registries"
+require "pixel_ruby/mcp/tools/get_item_examples_from_registries"
 
 class ExamplesToolTest < Minitest::Test
   def setup
-    @registry = RubyUI::MCP::Registry.load(TestSupport::FIXTURE_PATH)
-    @tool = RubyUI::MCP::Tools::GetItemExamplesFromRegistries.new(registry: @registry)
+    @registry = PixelRuby::MCP::Registry.load(TestSupport::FIXTURE_PATH)
+    @tool = PixelRuby::MCP::Tools::GetItemExamplesFromRegistries.new(registry: @registry)
   end
 
   def test_returns_examples_per_item

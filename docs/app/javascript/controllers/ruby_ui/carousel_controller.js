@@ -1,1 +1,0 @@
-../../../../../gem/lib/ruby_ui/carousel/carousel_controller.js

@@ -5,7 +5,7 @@ module Components
     module Grid
       class CreateEvent < Components::Base
         def view_template
-          RubyUI::Card(class: "p-8 space-y-4") do
+          PixelRuby::Card(class: "p-8 space-y-4") do
             div do
               Text(size: "4", weight: "semibold") { "Create an Event" }
               Text(size: "2", class: "text-muted-foreground") { "Enter your event details below" }
@@ -31,7 +31,7 @@ module Components
                   end
                 end
                 PopoverContent do
-                  RubyUI::Calendar(input_id: "#date")
+                  PixelRuby::Calendar(input_id: "#date")
                 end
               end
             end

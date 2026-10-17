@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/sidebar/sidebar_controller.js

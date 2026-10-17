@@ -59,7 +59,7 @@ class Views::Docs::Toast < Views::Base
       Heading(level: 2) { "About" }
       p(class: "text-muted-foreground text-sm leading-relaxed") do
         plain "Trigger toasts from the server with Turbo Streams or from JavaScript via "
-        code(class: "rounded bg-muted px-1.5 py-0.5 text-xs") { "window.RubyUI.toast.*" }
+        code(class: "rounded bg-muted px-1.5 py-0.5 text-xs") { "window.PixelRuby.toast.*" }
         plain ". Heavily inspired by the original "
         a(
           href: "https://github.com/emilkowalski/sonner",
@@ -74,10 +74,10 @@ class Views::Docs::Toast < Views::Base
       div(class: "rounded-md border bg-muted/30 p-4") do
         Codeblock(<<~RUBY, syntax: :ruby)
           # In application_layout.rb (Phlex), once globally:
-          render RubyUI::ToastRegion.new
+          render PixelRuby::ToastRegion.new
 
           # Pass flash to render Rails flash on initial load:
-          render RubyUI::ToastRegion.new(flash: helpers.flash.to_h)
+          render PixelRuby::ToastRegion.new(flash: helpers.flash.to_h)
         RUBY
       end
 
@@ -106,18 +106,18 @@ class Views::Docs::Toast < Views::Base
           # Option A — custom Turbo Stream action (compact):
           render turbo_stream: turbo_stream.action(
             :toast,
-            target: "ruby-ui-toaster",
+            target: "pixel-ruby-toaster",
             variant: :success,
             title: "Saved",
             description: "Project updated."
           )
 
           # Option B — append a fully-rendered ToastItem (for Action / Cancel slots):
-          render turbo_stream: turbo_stream.append("ruby-ui-toaster") {
-            render RubyUI::ToastItem.new(variant: :success) do
-              render RubyUI::ToastIcon.new(variant: :success)
-              render RubyUI::ToastTitle.new { "Saved" }
-              render RubyUI::ToastDescription.new { "Project updated." }
+          render turbo_stream: turbo_stream.append("pixel-ruby-toaster") {
+            render PixelRuby::ToastItem.new(variant: :success) do
+              render PixelRuby::ToastIcon.new(variant: :success)
+              render PixelRuby::ToastTitle.new { "Saved" }
+              render PixelRuby::ToastDescription.new { "Project updated." }
             end
           }
         RUBY
@@ -125,21 +125,21 @@ class Views::Docs::Toast < Views::Base
 
       Heading(level: 2) { "JavaScript API" }
       p(class: "text-muted-foreground text-sm") do
-        plain "Hotwire-friendly: window.RubyUI.toast.* is sugar over a CustomEvent dispatch. Either path works."
+        plain "Hotwire-friendly: window.PixelRuby.toast.* is sugar over a CustomEvent dispatch. Either path works."
       end
       div(class: "rounded-md border bg-muted/30 p-4 mt-2") do
         Codeblock(<<~JS, syntax: :javascript)
           // Sugar:
-          RubyUI.toast.success("Saved", { description: "Project updated." })
-          RubyUI.toast.error("Boom")
-          RubyUI.toast.info("Heads up")
-          RubyUI.toast.warning("Storage almost full")
-          RubyUI.toast.loading("Working...")
-          RubyUI.toast.dismiss(id)              // no-arg: dismiss all
-          RubyUI.toast.promise(p, { loading, success, error })
+          PixelRuby.toast.success("Saved", { description: "Project updated." })
+          PixelRuby.toast.error("Boom")
+          PixelRuby.toast.info("Heads up")
+          PixelRuby.toast.warning("Storage almost full")
+          PixelRuby.toast.loading("Working...")
+          PixelRuby.toast.dismiss(id)              // no-arg: dismiss all
+          PixelRuby.toast.promise(p, { loading, success, error })
 
           // Equivalent CustomEvent (any source can dispatch this):
-          window.dispatchEvent(new CustomEvent("ruby-ui:toast", {
+          window.dispatchEvent(new CustomEvent("pixel-ruby:toast", {
             detail: { variant: "success", title: "Saved", description: "..." }
           }))
         JS
@@ -160,9 +160,9 @@ class Views::Docs::Toast < Views::Base
       Heading(level: 3) { "JS API options" }
       p(class: "text-muted-foreground text-sm") do
         plain "Second argument to "
-        code(class: "rounded bg-muted px-1.5 py-0.5 text-xs") { "RubyUI.toast.<variant>(message, options)" }
+        code(class: "rounded bg-muted px-1.5 py-0.5 text-xs") { "PixelRuby.toast.<variant>(message, options)" }
         plain " or "
-        code(class: "rounded bg-muted px-1.5 py-0.5 text-xs") { "ruby-ui:toast" }
+        code(class: "rounded bg-muted px-1.5 py-0.5 text-xs") { "pixel-ruby:toast" }
         plain " CustomEvent detail."
       end
       props_table(JS_OPTIONS)

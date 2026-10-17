@@ -1,6 +1,6 @@
-# Contributing to RubyUI
+# Contributing to PixelRuby
 
-Thank you for your interest in contributing to RubyUI! This document provides guidelines for contributing to the project.
+Thank you for your interest in contributing to PixelRuby! This document provides guidelines for contributing to the project.
 
 ## Development Setup
 
@@ -43,20 +43,20 @@ If your changes include new components, modify how components should be used, or
 
 ### Installing Documentation Files
 
-RubyUI includes documentation files for each component that can be installed into your Rails application. These files are located at `lib/ruby_ui/{component}/{component}_docs.rb` and provide usage examples for each component.
+PixelRuby includes documentation files for each component that can be installed into your Rails application. These files are located at `lib/pixel_ruby/{component}/{component}_docs.rb` and provide usage examples for each component.
 
 To install the documentation files:
 
 ```bash
-bin/rails g ruby_ui:install:docs
+bin/rails g pixel_ruby:install:docs
 ```
 
 To overwrite existing documentation files:
 
 ```bash
-bin/rails g ruby_ui:install:docs --force
+bin/rails g pixel_ruby:install:docs --force
 ```
 
 This will copy the documentation files to `app/views/docs/` in your Rails application.
 
-Thank you for contributing to make RubyUI better! 
+Thank you for contributing to make PixelRuby better! 

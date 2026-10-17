@@ -5,14 +5,14 @@ module Components
     module Grid
       class Chat < Components::Base
         MESSAGES = [
-          "You should checkout RubyUI's new release, it makes life sooo much easier",
-          "What's RubyUI?",
+          "You should checkout PixelRuby's new release, it makes life sooo much easier",
+          "What's PixelRuby?",
           "Don't ask questions, just get on that ASAP and thank me later",
           "Alright, alright, I'll check it out"
         ]
 
         def view_template
-          RubyUI::Card(class: "p-8 space-y-6") do
+          PixelRuby::Card(class: "p-8 space-y-6") do
             header
             messages(MESSAGES)
             message_form

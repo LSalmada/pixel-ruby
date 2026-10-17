@@ -4,11 +4,11 @@ require "test_helper"
 require "fileutils"
 require "pathname"
 require "tmpdir"
-require_relative "../../lib/generators/ruby_ui/javascript_utils"
+require_relative "../../lib/generators/pixel_ruby/javascript_utils"
 
 class JavascriptUtilsTest < Minitest::Test
   class FakeInstaller
-    include RubyUI::Generators::JavascriptUtils
+    include PixelRuby::Generators::JavascriptUtils
 
     attr_reader :download_source, :download_destination
 

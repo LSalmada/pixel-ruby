@@ -186,7 +186,7 @@ class Views::Docs::InputOtp < Views::Base
 
       Heading(level: 2) { "Reacting to completion" }
 
-      Text { "The controller dispatches a ruby-ui--input-otp:complete custom event (detail: { value }) once the value reaches length characters, and a ruby-ui--input-otp:input event on every change. Wire a Stimulus action on a parent element to react — for example, to auto-submit a form:" }
+      Text { "The controller dispatches a pixel-ruby--input-otp:complete custom event (detail: { value }) once the value reaches length characters, and a pixel-ruby--input-otp:input event on every change. Wire a Stimulus action on a parent element to react — for example, to auto-submit a form:" }
 
       Codeblock(<<~JS, syntax: :javascript)
         // app/javascript/controllers/otp_form_controller.js
@@ -200,7 +200,7 @@ class Views::Docs::InputOtp < Views::Base
       JS
 
       Codeblock(<<~HTML, syntax: :html)
-        <form data-controller="otp-form" data-action="ruby-ui--input-otp:complete->otp-form#submit">
+        <form data-controller="otp-form" data-action="pixel-ruby--input-otp:complete->otp-form#submit">
           <!-- InputOtp(...) here -->
         </form>
       HTML

@@ -1,4 +1,4 @@
-# RubyUI (former PhlexUI) 🚀
+# PixelRuby (former PhlexUI) 🚀
 
 Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.
 
@@ -10,7 +10,7 @@ Use this as a reference to build your own component libraries.
 
 ### Key Features:
 
-- **Built for Speed** ⚡: RubyUI leverages Phlex, which is up to 12x faster than traditional Rails ERB templates.
+- **Built for Speed** ⚡: PixelRuby leverages Phlex, which is up to 12x faster than traditional Rails ERB templates.
 - **Stunning UI** 🎨: Design beautiful, streamlined, and customizable UIs that sell your app effortlessly.
 - **Stay Organized** 📁: Keep your UI components well-organized and easy to manage.
 - **Customer-Centric UX** 🧑‍💼: Create memorable app experiences for your users.
@@ -27,41 +27,41 @@ Use this as a reference to build your own component libraries.
 ## Installation 🚀
 
 > [!NOTE]
-> RubyUI 1.0 requires Ruby 3.2 or later
+> PixelRuby 1.0 requires Ruby 3.2 or later
 
 ### 1. Install the gem
 
 ```bash
-bundle add ruby_ui --group development --require false
+bundle add pixel_ruby --group development --require false
 ```
 
 or add it to your Gemfile:
 
 ```ruby
-gem "ruby_ui", group: :development, require: false
+gem "pixel_ruby", group: :development, require: false
 ```
 
 ### 2. Run the installer:
 
 ```bash
-bin/rails g ruby_ui:install
+bin/rails g pixel_ruby:install
 ```
 
 ### 3. Done! 🎉
 
-You can generate your components using `ruby_ui:component` generator.
+You can generate your components using `pixel_ruby:component` generator.
 
 ```bash
-bin/rails g ruby_ui:component Accordion
+bin/rails g pixel_ruby:component Accordion
 ```
 
 You can also generate multiple components at once.
 
 ```bash
-bin/rails g ruby_ui:component Button Link Input Textarea
+bin/rails g pixel_ruby:component Button Link Input Textarea
 ```
 
-You also can generate all components using `ruby_ui:component:all` generator
+You also can generate all components using `pixel_ruby:component:all` generator
 
 ## Documentation 📖
 
@@ -74,7 +74,7 @@ Visit https://rubyui.com/docs/introduction to view the full documentation, inclu
 
 ## Speed Comparison 🏎️
 
-RubyUI, powered by Phlex, outperforms alternative methods:
+PixelRuby, powered by Phlex, outperforms alternative methods:
 
 - Phlex: Baseline 🏁
 - ViewComponent: ~1.5x slower 🚙
@@ -97,4 +97,4 @@ Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.
 [![DigitalOcean Referral Badge](https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg)](https://www.digitalocean.com/?refcode=0fdaefc76c39&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
 
 
-© 2024 RubyUI. All rights reserved. 🔒
+© 2024 PixelRuby. All rights reserved. 🔒

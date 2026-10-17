@@ -8,16 +8,16 @@ module Components
           Heading(level: 2, class: "flex items-center pb-0 border-0") {
             img(src: image_url("logo.svg"), class: "h-4 block dark:hidden")
             img(src: image_url("logo_dark.svg"), class: "h-4 hidden dark:block")
-            span(class: "sr-only") { "RubyUI" }
-            Badge(class: "ml-2 whitespace-nowrap bg-black text-white hover:bg-black/90 px-1.5 py-0.5 rounded-full text-xs font-semibold") { ruby_ui_version }
+            span(class: "sr-only") { "PixelRuby" }
+            Badge(class: "ml-2 whitespace-nowrap bg-black text-white hover:bg-black/90 px-1.5 py-0.5 rounded-full text-xs font-semibold") { pixel_ruby_version }
           }
         end
       end
 
       private
 
-      def ruby_ui_version
-        RubyUI::VERSION.split(".").first(2).join(".")
+      def pixel_ruby_version
+        PixelRuby::VERSION.split(".").first(2).join(".")
       end
     end
   end

@@ -1,1 +1,0 @@
-../../../../../gem/lib/ruby_ui/select/select_controller.js

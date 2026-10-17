@@ -3,27 +3,27 @@
 class Views::Docs::Installation::RailsImportmaps < Views::Base
   def view_template
     div(class: "max-w-2xl mx-auto w-full py-10 space-y-10") do
-      render Docs::Header.new(title: "Rails - Importmap", description: "How to install RubyUI within a Rails app that employs import maps")
+      render Docs::Header.new(title: "Rails - Importmap", description: "How to install PixelRuby within a Rails app that employs import maps")
 
       Alert(variant: :info) do
-        AlertTitle { "RubyUI" }
-        AlertDescription { "To take full advantage of RubyUI, the application is expected to be using TailwindCSS 4 and Stimulus" }
+        AlertTitle { "PixelRuby" }
+        AlertDescription { "To take full advantage of PixelRuby, the application is expected to be using TailwindCSS 4 and Stimulus" }
       end
 
-      Heading(level: 2, class: "!text-2xl pb-4 border-b") { "Using RubyUI CLI" }
+      Heading(level: 2, class: "!text-2xl pb-4 border-b") { "Using PixelRuby CLI" }
       Text do
-        "We provide a Ruby gem with useful generators to help you to setup RubyUI components in your apps."
+        "We provide a Ruby gem with useful generators to help you to setup PixelRuby components in your apps."
       end
 
       render Steps::Builder.new do |steps|
         steps.add_step do
           step_container do
             Text(size: "4", weight: "semibold") do
-              plain "Add RubyUI gem to your Gemfile"
+              plain "Add PixelRuby gem to your Gemfile"
             end
 
             code = <<~CODE
-              bundle add ruby_ui --group development --require false
+              bundle add pixel_ruby --group development --require false
             CODE
             div(class: "w-full") do
               Codeblock(code, syntax: :javascript)
@@ -38,7 +38,7 @@ class Views::Docs::Installation::RailsImportmaps < Views::Base
             end
 
             code = <<~CODE
-              rails g ruby_ui:install
+              rails g pixel_ruby:install
             CODE
             div(class: "w-full") do
               Codeblock(code, syntax: :javascript)
@@ -68,7 +68,7 @@ class Views::Docs::Installation::RailsImportmaps < Views::Base
             Alert(variant: :warning) do
               info_icon
               AlertTitle { "Phlex compatibility" }
-              AlertDescription { "Note that RubyUI components target Phlex 2.x most recent version" }
+              AlertDescription { "Note that PixelRuby components target Phlex 2.x most recent version" }
             end
           end
         end
@@ -95,7 +95,7 @@ class Views::Docs::Installation::RailsImportmaps < Views::Base
             end
 
             Text do
-              "RubyUI components use tailwind_merge to avoid conflicts between TailwindCSS classes"
+              "PixelRuby components use tailwind_merge to avoid conflicts between TailwindCSS classes"
             end
 
             code = <<~CODE
@@ -110,31 +110,26 @@ class Views::Docs::Installation::RailsImportmaps < Views::Base
         steps.add_step do
           step_container do
             Text(size: "4", weight: "semibold") do
-              "Create RubyUI initializer"
+              "Create PixelRuby initializer"
             end
 
             Text do
               plain "Add this code to "
-              InlineCode(class: "whitespace-nowrap") { "config/initializers/ruby_ui.rb" }
+              InlineCode(class: "whitespace-nowrap") { "config/initializers/pixel_ruby.rb" }
             end
 
             code = <<~RUBY
-              module RubyUI
+              module PixelRuby
                 extend Phlex::Kit
               end
 
-              # Allow using RubyUI instead RubyUi
-              Rails.autoloaders.main.inflector.inflect(
-                "ruby_ui" => "RubyUI"
-              )
-
-              # Allow using RubyUI::ComponentName instead Components::RubyUI::ComponentName
+              # Allow using PixelRuby::ComponentName instead Components::PixelRuby::ComponentName
               Rails.autoloaders.main.push_dir(
-                "\#{Rails.root}/app/components/ruby_ui", namespace: RubyUI
+                "\#{Rails.root}/app/components/pixel_ruby", namespace: PixelRuby
               )
 
-              # Allow using RubyUI::ComponentName instead RubyUI::ComponentName::ComponentName
-              Rails.autoloaders.main.collapse(Rails.root.join("app/components/ruby_ui/*"))
+              # Allow using PixelRuby::ComponentName instead PixelRuby::ComponentName::ComponentName
+              Rails.autoloaders.main.collapse(Rails.root.join("app/components/pixel_ruby/*"))
             RUBY
             div(class: "w-full") do
               Codeblock(code, syntax: :ruby)
@@ -145,12 +140,12 @@ class Views::Docs::Installation::RailsImportmaps < Views::Base
         steps.add_step do
           step_container do
             Text(size: "4", weight: "semibold") do
-              "Include RubyUI kit in your base component"
+              "Include PixelRuby kit in your base component"
             end
 
             Text do
               plain "Include "
-              InlineCode(class: "whitespace-nowrap") { "RubyUI" }
+              InlineCode(class: "whitespace-nowrap") { "PixelRuby" }
               plain " module in "
               InlineCode(class: "whitespace-nowrap") { "app/components/base.rb" }
             end
@@ -159,7 +154,7 @@ class Views::Docs::Installation::RailsImportmaps < Views::Base
               module Components
                 class Base < Phlex::HTML
                   include Components
-                  include RubyUI
+                  include PixelRuby
 
                   ...
             RUBY
@@ -172,23 +167,23 @@ class Views::Docs::Installation::RailsImportmaps < Views::Base
         steps.add_step do
           step_container do
             Text(size: "4", weight: "semibold") do
-              "Create the RubyUI base component"
+              "Create the PixelRuby base component"
             end
 
             Text do
-              plain "Every RubyUI component inherit from RubyUI::Base "
+              plain "Every PixelRuby component inherit from PixelRuby::Base "
             end
 
             Text do
               plain "Copy and paste the code snippet below into the "
-              InlineCode(class: "whitespace-nowrap") { "app/components/ruby_ui/base.rb" }
+              InlineCode(class: "whitespace-nowrap") { "app/components/pixel_ruby/base.rb" }
               plain " file."
             end
 
             code = <<~RUBY
               require "tailwind_merge"
 
-              module RubyUI
+              module PixelRuby
                 class Base < Phlex::HTML
                   TAILWIND_MERGER = ::TailwindMerge::Merger.new.freeze unless defined?(TAILWIND_MERGER)
 
@@ -216,11 +211,11 @@ class Views::Docs::Installation::RailsImportmaps < Views::Base
         steps.add_step do
           step_container do
             Text(size: "4", weight: "semibold") do
-              "Include RubyUI configuration & styles in your CSS"
+              "Include PixelRuby configuration & styles in your CSS"
             end
 
             Text do
-              plain "Include RubyUI styles in "
+              plain "Include PixelRuby styles in "
               InlineCode(class: "whitespace-nowrap") { "app/assets/tailwind/application.css" }
             end
 
@@ -273,7 +268,7 @@ class Views::Docs::Installation::RailsImportmaps < Views::Base
                 --sidebar-border: oklch(0.922 0 0);
                 --sidebar-ring: oklch(0.708 0 0);
 
-                /* ruby_ui specific */
+                /* pixel_ruby specific */
                 --warning: hsl(38 92% 50%);
                 --warning-foreground: hsl(0 0% 100%);
                 --success: hsl(87 100% 37%);
@@ -314,7 +309,7 @@ class Views::Docs::Installation::RailsImportmaps < Views::Base
                 --sidebar-border: oklch(0.269 0 0);
                 --sidebar-ring: oklch(0.439 0 0);
 
-                /* ruby_ui specific */
+                /* pixel_ruby specific */
                 --warning: hsl(38 92% 50%);
                 --warning-foreground: hsl(0 0% 100%);
                 --success: hsl(84 81% 44%);
@@ -359,7 +354,7 @@ class Views::Docs::Installation::RailsImportmaps < Views::Base
                 --color-sidebar-border: var(--sidebar-border);
                 --color-sidebar-ring: var(--sidebar-ring);
 
-                /* ruby_ui specific */
+                /* pixel_ruby specific */
                 --color-warning: var(--warning);
                 --color-warning-foreground: var(--warning-foreground);
                 --color-success: var(--success);
@@ -396,7 +391,7 @@ class Views::Docs::Installation::RailsImportmaps < Views::Base
             end
 
             Text do
-              plain "Some RubyUI components utilize CSS animations to create smooth transitions."
+              plain "Some PixelRuby components utilize CSS animations to create smooth transitions."
             end
 
             code = <<~CODE

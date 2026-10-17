@@ -7,8 +7,8 @@ services:
       dockerfile: .devcontainer/Dockerfile
 
     volumes:
-    - ../..:/workspaces/ruby_ui:cached
-    working_dir: /workspaces/ruby_ui/docs
+    - ../..:/workspaces/pixel_ruby:cached
+    working_dir: /workspaces/pixel_ruby/docs
     ports:
     - "3001:3000"
 

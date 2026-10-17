@@ -13,7 +13,7 @@ class Views::Docs::Separator < Views::Base
         <<~RUBY
           div do
             div(class: "space-y-1") do
-              h4(class: "text-sm font-medium leading-none") { "RubyUI" }
+              h4(class: "text-sm font-medium leading-none") { "PixelRuby" }
               p(class: "text-sm text-muted-foreground") { "An open-source UI component library." }
             end
             Separator(class: "my-4")

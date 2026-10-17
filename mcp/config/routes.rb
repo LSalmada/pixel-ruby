@@ -1,3 +1,3 @@
-RubyUI::MCP::Engine.routes.draw do
-  match "/", to: RubyUI::MCP::RackApp, via: %i[get post delete], as: :mcp
+PixelRuby::MCP::Engine.routes.draw do
+  match "/", to: PixelRuby::MCP::RackApp, via: %i[get post delete], as: :mcp
 end

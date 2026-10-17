@@ -8,7 +8,7 @@ class SiteFilesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_equal "text/plain", response.media_type
-    assert_includes response.body, "# RubyUI"
+    assert_includes response.body, "# PixelRuby"
     assert_includes response.body, "## Core docs"
     assert_includes response.body, "https://rubyui.com/docs/introduction"
     assert_includes response.body, "https://rubyui.com/llms-full.txt"
@@ -21,9 +21,9 @@ class SiteFilesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_equal "text/plain", response.media_type
-    assert_includes response.body, "# RubyUI Full LLM Reference"
+    assert_includes response.body, "# PixelRuby Full LLM Reference"
     assert_includes response.body, "## Component catalog"
-    assert_includes response.body, "bin/rails g ruby_ui:component Button"
+    assert_includes response.body, "bin/rails g pixel_ruby:component Button"
   end
 
   test "sitemap xml is available through routing" do

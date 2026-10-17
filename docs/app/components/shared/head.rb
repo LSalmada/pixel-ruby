@@ -7,7 +7,7 @@ module Components
 
       def view_template
         head do
-          title { "RubyUI - Component Library" }
+          title { "PixelRuby - Component Library" }
           meta name: "viewport", content: "width=device-width,initial-scale=1"
           meta name: "turbo-refresh-method", content: "morph"
           meta name: "turbo-refresh-scroll", content: "preserve"

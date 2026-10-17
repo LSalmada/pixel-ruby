@@ -1,11 +1,11 @@
-# Contributing to RubyUI
+# Contributing to PixelRuby
 
 Thanks for your interest in contributing! This repository is a monorepo containing two sibling projects:
 
-- [`gem/`](gem/) — the `ruby_ui` gem published to rubygems.org.
+- [`gem/`](gem/) — the `pixel_ruby` gem published to rubygems.org.
 - [`docs/`](docs/) — the Rails app that powers https://rubyui.com.
 
-The big advantage of the monorepo: **a single PR can touch both the component and the docs example**. The docs app consumes the local gem via `path: "../gem"`, so any change in `gem/lib/ruby_ui/` is reflected in the running site immediately.
+The big advantage of the monorepo: **a single PR can touch both the component and the docs example**. The docs app consumes the local gem via `path: "../gem"`, so any change in `gem/lib/pixel_ruby/` is reflected in the running site immediately.
 
 ## Development setup
 
@@ -13,7 +13,7 @@ We recommend using the devcontainer for either subproject (each has its own `.de
 
 ```bash
 git clone git@github.com:ruby-ui/ruby_ui.git
-cd ruby_ui
+cd pixel_ruby
 
 # For gem-only work:
 cd gem
@@ -55,12 +55,12 @@ We prioritize:
 
 ## Documentation files
 
-The gem ships per-component `*_docs.rb` files (rendering examples) under `gem/lib/ruby_ui/<component>/`. Consumers of the gem can install these into their own Rails app with:
+The gem ships per-component `*_docs.rb` files (rendering examples) under `gem/lib/pixel_ruby/<component>/`. Consumers of the gem can install these into their own Rails app with:
 
 ```bash
-bin/rails g ruby_ui:install:docs
+bin/rails g pixel_ruby:install:docs
 ```
 
 Within this monorepo, the **docs app does not run that generator** — it has its own richer view implementations in `docs/app/views/docs/` and `docs/app/components/docs/`. If you change a component's API, update the relevant view in `docs/app/views/docs/<component>.rb` to keep the documentation site accurate.
 
-Thanks for helping make RubyUI better!
+Thanks for helping make PixelRuby better!

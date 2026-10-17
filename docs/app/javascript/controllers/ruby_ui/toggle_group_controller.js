@@ -1,1 +1,0 @@
-../../../../../gem/lib/ruby_ui/toggle_group/toggle_group_controller.js

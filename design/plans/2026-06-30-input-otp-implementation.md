@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add a Phlex/Stimulus `InputOtp` compound component (root + `InputOtpGroup`/`InputOtpSlot`/`InputOtpSeparator`) to the `ruby_ui` gem, ported behaviorally from shadcn's InputOTP, and wire it into the `docs/` Rails app.
+**Goal:** Add a Phlex/Stimulus `InputOtp` compound component (root + `InputOtpGroup`/`InputOtpSlot`/`InputOtpSeparator`) to the `pixel_ruby` gem, ported behaviorally from shadcn's InputOTP, and wire it into the `docs/` Rails app.
 
 **Architecture:** One real `<input>` (transparent, absolutely positioned, stays in the a11y tree) drives state; decorative `aria-hidden` slot `<div>`s mirror its value/selection via a Stimulus controller. No new JS package — `input-otp` (the upstream JS lib) is React-only and can't be wrapped, so the controller reimplements the behavior directly.
 
@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - Component class names: `InputOtp`, `InputOtpGroup`, `InputOtpSlot`, `InputOtpSeparator` — no `OTP` acronym casing (matches `NativeSelect`/`DataTable` precedent; the gem's test loader derives class names by capitalizing each underscore-separated segment of the filename, so `input_otp.rb` → `InputOtp` automatically).
-- No new entry in `gem/lib/generators/ruby_ui/dependencies.yml` — no new gem, no new JS package, no new component dependency.
+- No new entry in `gem/lib/generators/pixel_ruby/dependencies.yml` — no new gem, no new JS package, no new component dependency.
 - Every Ruby component file ends with a matching update to its test file and, where applicable, the docs wiring — per `gem/AGENTS.md` and root `CLAUDE.md` ("Don't edit a component without updating its docs page in the same PR").
 - Run `cd gem && bundle exec rake` (tests + standardrb) after every Ruby task; it must stay green throughout.
 - Use `mise exec -- <command>` (or ensure the `mise`-managed Ruby 3.4.7 / Node from `gem/.tool-versions` is on `PATH`) for every Ruby/bundle/pnpm command — the system Ruby (2.6) cannot run this gem's bundler lockfile.
@@ -22,33 +22,33 @@
 ### Task 1: `InputOtp` root component
 
 **Files:**
-- Create: `gem/lib/ruby_ui/input_otp/input_otp.rb`
-- Test: `gem/test/ruby_ui/input_otp_test.rb`
+- Create: `gem/lib/pixel_ruby/input_otp/input_otp.rb`
+- Test: `gem/test/pixel_ruby/input_otp_test.rb`
 
 **Interfaces:**
-- Produces: `RubyUI::InputOtp.new(length:, pattern: nil, **attrs)` / Phlex::Kit call `InputOtp(length:, pattern: nil, **attrs, &block)`. Renders a wrapper `div` containing the yielded block (groups/slots) and a real `input` carrying `**attrs` (so `name:`, `value:`, `disabled:` etc. land on the real input, same convention as `RubyUI::Switch`).
-- The real input carries `data-controller="ruby-ui--input-otp"`, Stimulus values `length` (Number) and `char-class` (String, defaults to `"[0-9]"` when no `pattern:` given), and target name `input`. Task 4's Stimulus controller and Task 3's `InputOtpSlot` both depend on this exact target/value naming — do not rename.
+- Produces: `PixelRuby::InputOtp.new(length:, pattern: nil, **attrs)` / Phlex::Kit call `InputOtp(length:, pattern: nil, **attrs, &block)`. Renders a wrapper `div` containing the yielded block (groups/slots) and a real `input` carrying `**attrs` (so `name:`, `value:`, `disabled:` etc. land on the real input, same convention as `PixelRuby::Switch`).
+- The real input carries `data-controller="pixel-ruby--input-otp"`, Stimulus values `length` (Number) and `char-class` (String, defaults to `"[0-9]"` when no `pattern:` given), and target name `input`. Task 4's Stimulus controller and Task 3's `InputOtpSlot` both depend on this exact target/value naming — do not rename.
 
 - [ ] **Step 1: Write the failing test**
 
-Create `gem/test/ruby_ui/input_otp_test.rb`:
+Create `gem/test/pixel_ruby/input_otp_test.rb`:
 
 ```ruby
 # frozen_string_literal: true
 
 require "test_helper"
 
-class RubyUI::InputOtpTest < ComponentTest
+class PixelRuby::InputOtpTest < ComponentTest
   def test_render_wires_stimulus_controller_and_values
-    output = phlex { RubyUI.InputOtp(length: 6, name: "otp") }
+    output = phlex { PixelRuby.InputOtp(length: 6, name: "otp") }
 
-    assert_match(/data-controller="ruby-ui--input-otp"/, output)
-    assert_match(/data-ruby-ui--input-otp-length-value="6"/, output)
-    assert_match(/data-ruby-ui--input-otp-char-class-value="\[0-9\]"/, output)
+    assert_match(/data-controller="pixel-ruby--input-otp"/, output)
+    assert_match(/data-pixel-ruby--input-otp-length-value="6"/, output)
+    assert_match(/data-pixel-ruby--input-otp-char-class-value="\[0-9\]"/, output)
   end
 
   def test_render_forwards_form_attrs_to_real_input
-    output = phlex { RubyUI.InputOtp(length: 6, name: "otp", value: "123") }
+    output = phlex { PixelRuby.InputOtp(length: 6, name: "otp", value: "123") }
 
     assert_match(/name="otp"/, output)
     assert_match(/value="123"/, output)
@@ -57,22 +57,22 @@ class RubyUI::InputOtpTest < ComponentTest
   end
 
   def test_render_defaults_to_numeric_inputmode_and_digit_pattern
-    output = phlex { RubyUI.InputOtp(length: 4, name: "otp") }
+    output = phlex { PixelRuby.InputOtp(length: 4, name: "otp") }
 
     assert_match(/inputmode="numeric"/, output)
     assert_match(/pattern="\^\(\?:\[0-9\]\)\{4\}\$"/, output)
   end
 
   def test_render_with_custom_pattern_uses_text_inputmode
-    output = phlex { RubyUI.InputOtp(length: 4, name: "otp", pattern: "[0-9A-Za-z]") }
+    output = phlex { PixelRuby.InputOtp(length: 4, name: "otp", pattern: "[0-9A-Za-z]") }
 
     assert_match(/inputmode="text"/, output)
-    assert_match(/data-ruby-ui--input-otp-char-class-value="\[0-9A-Za-z\]"/, output)
+    assert_match(/data-pixel-ruby--input-otp-char-class-value="\[0-9A-Za-z\]"/, output)
     assert_match(/pattern="\^\(\?:\[0-9A-Za-z\]\)\{4\}\$"/, output)
   end
 
   def test_render_yields_block_content
-    output = phlex { RubyUI.InputOtp(length: 1, name: "otp") { div(id: "marker") } }
+    output = phlex { PixelRuby.InputOtp(length: 1, name: "otp") { div(id: "marker") } }
 
     assert_match(/id="marker"/, output)
   end
@@ -81,17 +81,17 @@ end
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `cd gem && mise exec -- bundle exec rake test TEST=test/ruby_ui/input_otp_test.rb`
-Expected: FAIL — `NameError` / `uninitialized constant RubyUI::InputOtp` (or similar autoload failure), since the component doesn't exist yet.
+Run: `cd gem && mise exec -- bundle exec rake test TEST=test/pixel_ruby/input_otp_test.rb`
+Expected: FAIL — `NameError` / `uninitialized constant PixelRuby::InputOtp` (or similar autoload failure), since the component doesn't exist yet.
 
 - [ ] **Step 3: Write the implementation**
 
-Create `gem/lib/ruby_ui/input_otp/input_otp.rb`:
+Create `gem/lib/pixel_ruby/input_otp/input_otp.rb`:
 
 ```ruby
 # frozen_string_literal: true
 
-module RubyUI
+module PixelRuby
   class InputOtp < Base
     def initialize(length:, pattern: nil, **attrs)
       @length = length
@@ -116,11 +116,11 @@ module RubyUI
         maxlength: @length,
         autocomplete: "one-time-code",
         data: {
-          controller: "ruby-ui--input-otp",
-          ruby_ui__input_otp_length_value: @length,
-          ruby_ui__input_otp_char_class_value: @char_class,
-          ruby_ui__input_otp_target: "input",
-          action: "input->ruby-ui--input-otp#onInput keydown->ruby-ui--input-otp#onKeydown paste->ruby-ui--input-otp#onPaste focus->ruby-ui--input-otp#onFocus blur->ruby-ui--input-otp#onBlur"
+          controller: "pixel-ruby--input-otp",
+          pixel_ruby__input_otp_length_value: @length,
+          pixel_ruby__input_otp_char_class_value: @char_class,
+          pixel_ruby__input_otp_target: "input",
+          action: "input->pixel-ruby--input-otp#onInput keydown->pixel-ruby--input-otp#onKeydown paste->pixel-ruby--input-otp#onPaste focus->pixel-ruby--input-otp#onFocus blur->pixel-ruby--input-otp#onBlur"
         },
         class: "absolute inset-0 h-full w-full cursor-text border-0 bg-transparent p-0 text-transparent caret-transparent outline-none selection:bg-transparent disabled:cursor-not-allowed"
       }
@@ -131,13 +131,13 @@ end
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `cd gem && mise exec -- bundle exec rake test TEST=test/ruby_ui/input_otp_test.rb`
+Run: `cd gem && mise exec -- bundle exec rake test TEST=test/pixel_ruby/input_otp_test.rb`
 Expected: `5 runs, ... 0 failures, 0 errors`
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add gem/lib/ruby_ui/input_otp/input_otp.rb gem/test/ruby_ui/input_otp_test.rb
+git add gem/lib/pixel_ruby/input_otp/input_otp.rb gem/test/pixel_ruby/input_otp_test.rb
 git commit -m "[Feature] Add InputOtp root component"
 ```
 
@@ -146,9 +146,9 @@ git commit -m "[Feature] Add InputOtp root component"
 ### Task 2: `InputOtpGroup` and `InputOtpSeparator`
 
 **Files:**
-- Create: `gem/lib/ruby_ui/input_otp/input_otp_group.rb`
-- Create: `gem/lib/ruby_ui/input_otp/input_otp_separator.rb`
-- Modify (append to): `gem/test/ruby_ui/input_otp_test.rb`
+- Create: `gem/lib/pixel_ruby/input_otp/input_otp_group.rb`
+- Create: `gem/lib/pixel_ruby/input_otp/input_otp_separator.rb`
+- Modify (append to): `gem/test/pixel_ruby/input_otp_test.rb`
 
 **Interfaces:**
 - Produces: `InputOtpGroup(**attrs, &block)` — plain flex wrapper `div`, no Stimulus involvement.
@@ -157,26 +157,26 @@ git commit -m "[Feature] Add InputOtp root component"
 
 - [ ] **Step 1: Write the failing tests**
 
-Append to `gem/test/ruby_ui/input_otp_test.rb` (inside the existing `RubyUI::InputOtpTest` class, before the final `end`):
+Append to `gem/test/pixel_ruby/input_otp_test.rb` (inside the existing `PixelRuby::InputOtpTest` class, before the final `end`):
 
 ```ruby
 
   def test_group_renders_flex_wrapper
-    output = phlex { RubyUI.InputOtpGroup { div(id: "marker") } }
+    output = phlex { PixelRuby.InputOtpGroup { div(id: "marker") } }
 
     assert_match(/class="flex items-center"/, output)
     assert_match(/id="marker"/, output)
   end
 
   def test_separator_renders_role_with_default_icon
-    output = phlex { RubyUI.InputOtpSeparator() }
+    output = phlex { PixelRuby.InputOtpSeparator() }
 
     assert_match(/role="separator"/, output)
     assert_match(/<svg/, output)
   end
 
   def test_separator_renders_custom_block_instead_of_icon
-    output = phlex { RubyUI.InputOtpSeparator { plain "-" } }
+    output = phlex { PixelRuby.InputOtpSeparator { plain "-" } }
 
     assert_match(/role="separator"/, output)
     refute_match(/<svg/, output)
@@ -186,17 +186,17 @@ Append to `gem/test/ruby_ui/input_otp_test.rb` (inside the existing `RubyUI::Inp
 
 - [ ] **Step 2: Run tests to verify they fail**
 
-Run: `cd gem && mise exec -- bundle exec rake test TEST=test/ruby_ui/input_otp_test.rb`
-Expected: FAIL — `uninitialized constant RubyUI::InputOtpGroup` (and `InputOtpSeparator`).
+Run: `cd gem && mise exec -- bundle exec rake test TEST=test/pixel_ruby/input_otp_test.rb`
+Expected: FAIL — `uninitialized constant PixelRuby::InputOtpGroup` (and `InputOtpSeparator`).
 
 - [ ] **Step 3: Write the implementation**
 
-Create `gem/lib/ruby_ui/input_otp/input_otp_group.rb`:
+Create `gem/lib/pixel_ruby/input_otp/input_otp_group.rb`:
 
 ```ruby
 # frozen_string_literal: true
 
-module RubyUI
+module PixelRuby
   class InputOtpGroup < Base
     def view_template(&block)
       div(**attrs, &block)
@@ -211,12 +211,12 @@ module RubyUI
 end
 ```
 
-Create `gem/lib/ruby_ui/input_otp/input_otp_separator.rb`:
+Create `gem/lib/pixel_ruby/input_otp/input_otp_separator.rb`:
 
 ```ruby
 # frozen_string_literal: true
 
-module RubyUI
+module PixelRuby
   class InputOtpSeparator < Base
     def view_template(&block)
       div(**attrs) do
@@ -257,13 +257,13 @@ end
 
 - [ ] **Step 4: Run tests to verify they pass**
 
-Run: `cd gem && mise exec -- bundle exec rake test TEST=test/ruby_ui/input_otp_test.rb`
+Run: `cd gem && mise exec -- bundle exec rake test TEST=test/pixel_ruby/input_otp_test.rb`
 Expected: `8 runs, ... 0 failures, 0 errors`
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add gem/lib/ruby_ui/input_otp/input_otp_group.rb gem/lib/ruby_ui/input_otp/input_otp_separator.rb gem/test/ruby_ui/input_otp_test.rb
+git add gem/lib/pixel_ruby/input_otp/input_otp_group.rb gem/lib/pixel_ruby/input_otp/input_otp_separator.rb gem/test/pixel_ruby/input_otp_test.rb
 git commit -m "[Feature] Add InputOtpGroup and InputOtpSeparator"
 ```
 
@@ -272,29 +272,29 @@ git commit -m "[Feature] Add InputOtpGroup and InputOtpSeparator"
 ### Task 3: `InputOtpSlot`
 
 **Files:**
-- Create: `gem/lib/ruby_ui/input_otp/input_otp_slot.rb`
-- Modify (append to): `gem/test/ruby_ui/input_otp_test.rb`
+- Create: `gem/lib/pixel_ruby/input_otp/input_otp_slot.rb`
+- Modify (append to): `gem/test/pixel_ruby/input_otp_test.rb`
 
 **Interfaces:**
-- Produces: `InputOtpSlot(index:, **attrs)` — `div` with `aria-hidden="true"`, `data-ruby-ui--input-otp-target="slot"`, `data-index="<index>"`. No block/content — Task 4's Stimulus controller sets `textContent` and toggles `data-active`/`data-caret` on it at runtime.
-- Consumes: the `ruby-ui--input-otp` controller scope from Task 1 (must be rendered inside an `InputOtp` block to be wired up — this component renders standalone for testing purposes, but is only functional nested inside `InputOtp`).
+- Produces: `InputOtpSlot(index:, **attrs)` — `div` with `aria-hidden="true"`, `data-pixel-ruby--input-otp-target="slot"`, `data-index="<index>"`. No block/content — Task 4's Stimulus controller sets `textContent` and toggles `data-active`/`data-caret` on it at runtime.
+- Consumes: the `pixel-ruby--input-otp` controller scope from Task 1 (must be rendered inside an `InputOtp` block to be wired up — this component renders standalone for testing purposes, but is only functional nested inside `InputOtp`).
 
 - [ ] **Step 1: Write the failing tests**
 
-Append to `gem/test/ruby_ui/input_otp_test.rb`:
+Append to `gem/test/pixel_ruby/input_otp_test.rb`:
 
 ```ruby
 
   def test_slot_renders_aria_hidden_with_index_and_target
-    output = phlex { RubyUI.InputOtpSlot(index: 3) }
+    output = phlex { PixelRuby.InputOtpSlot(index: 3) }
 
     assert_match(/aria-hidden="true"/, output)
     assert_match(/data-index="3"/, output)
-    assert_match(/data-ruby-ui--input-otp-target="slot"/, output)
+    assert_match(/data-pixel-ruby--input-otp-target="slot"/, output)
   end
 
   def test_slot_renders_first_last_rounding_classes
-    output = phlex { RubyUI.InputOtpSlot(index: 0) }
+    output = phlex { PixelRuby.InputOtpSlot(index: 0) }
 
     assert_match(/first:rounded-l-md/, output)
     assert_match(/last:rounded-r-md/, output)
@@ -303,17 +303,17 @@ Append to `gem/test/ruby_ui/input_otp_test.rb`:
 
 - [ ] **Step 2: Run tests to verify they fail**
 
-Run: `cd gem && mise exec -- bundle exec rake test TEST=test/ruby_ui/input_otp_test.rb`
-Expected: FAIL — `uninitialized constant RubyUI::InputOtpSlot`.
+Run: `cd gem && mise exec -- bundle exec rake test TEST=test/pixel_ruby/input_otp_test.rb`
+Expected: FAIL — `uninitialized constant PixelRuby::InputOtpSlot`.
 
 - [ ] **Step 3: Write the implementation**
 
-Create `gem/lib/ruby_ui/input_otp/input_otp_slot.rb`:
+Create `gem/lib/pixel_ruby/input_otp/input_otp_slot.rb`:
 
 ```ruby
 # frozen_string_literal: true
 
-module RubyUI
+module PixelRuby
   class InputOtpSlot < Base
     def initialize(index:, **attrs)
       @index = index
@@ -330,7 +330,7 @@ module RubyUI
       {
         aria_hidden: "true",
         data: {
-          ruby_ui__input_otp_target: "slot",
+          pixel_ruby__input_otp_target: "slot",
           index: @index
         },
         class: [
@@ -347,7 +347,7 @@ end
 
 - [ ] **Step 4: Run tests to verify they pass**
 
-Run: `cd gem && mise exec -- bundle exec rake test TEST=test/ruby_ui/input_otp_test.rb`
+Run: `cd gem && mise exec -- bundle exec rake test TEST=test/pixel_ruby/input_otp_test.rb`
 Expected: `10 runs, ... 0 failures, 0 errors`
 
 - [ ] **Step 5: Run full gem suite + lint, then commit**
@@ -356,32 +356,32 @@ Run: `cd gem && mise exec -- bundle exec rake`
 Expected: all existing tests still pass (`262 runs` — 252 baseline + 10 new — `0 failures, 0 errors`), `no offenses detected`.
 
 ```bash
-git add gem/lib/ruby_ui/input_otp/input_otp_slot.rb gem/test/ruby_ui/input_otp_test.rb
+git add gem/lib/pixel_ruby/input_otp/input_otp_slot.rb gem/test/pixel_ruby/input_otp_test.rb
 git commit -m "[Feature] Add InputOtpSlot"
 ```
 
 ---
 
-### Task 4: Stimulus controller (`ruby-ui--input-otp`)
+### Task 4: Stimulus controller (`pixel-ruby--input-otp`)
 
 **Files:**
-- Create: `gem/lib/ruby_ui/input_otp/input_otp_controller.js`
+- Create: `gem/lib/pixel_ruby/input_otp/input_otp_controller.js`
 
 **Interfaces:**
 - Consumes: target `input` (Task 1's real `<input>`), target array `slot` (Task 3's `InputOtpSlot` divs, each carrying `data-index`), Stimulus values `lengthValue` (Number), `charClassValue` (String).
-- Produces: custom events `ruby-ui--input-otp:input` and `ruby-ui--input-otp:complete`, both with `detail: { value }`, dispatched on the controller's element (bubbles by default via Stimulus `dispatch`) — this is the integration point for Hotwire/Turbo consumers (e.g. auto-submitting a form on complete).
+- Produces: custom events `pixel-ruby--input-otp:input` and `pixel-ruby--input-otp:complete`, both with `detail: { value }`, dispatched on the controller's element (bubbles by default via Stimulus `dispatch`) — this is the integration point for Hotwire/Turbo consumers (e.g. auto-submitting a form on complete).
 - No Minitest coverage — this codebase has no JS test runner (verified: no `package.json` test script, no `.test.js`/`.spec.js` files anywhere in the repo). Behavior is verified manually in Task 6's browser check, consistent with how every other Stimulus controller in this gem is validated.
 
 - [ ] **Step 1: Write the implementation**
 
-> **Superseded:** the draft below is what Task 4 originally shipped. Manual browser testing (Task 7) and PR review surfaced real bugs in it — collapsed-caret arrow navigation, no replace-and-advance after editing a full value, no sanitization of a prefilled `value:` on connect — all fixed in follow-up commits. Treat `gem/lib/ruby_ui/input_otp/input_otp_controller.js` as the source of truth, not this snapshot.
+> **Superseded:** the draft below is what Task 4 originally shipped. Manual browser testing (Task 7) and PR review surfaced real bugs in it — collapsed-caret arrow navigation, no replace-and-advance after editing a full value, no sanitization of a prefilled `value:` on connect — all fixed in follow-up commits. Treat `gem/lib/pixel_ruby/input_otp/input_otp_controller.js` as the source of truth, not this snapshot.
 
-Create `gem/lib/ruby_ui/input_otp/input_otp_controller.js`:
+Create `gem/lib/pixel_ruby/input_otp/input_otp_controller.js`:
 
 ```js
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="ruby-ui--input-otp"
+// Connects to data-controller="pixel-ruby--input-otp"
 export default class extends Controller {
   static targets = ["input", "slot"]
   static values = { length: Number, charClass: String }
@@ -481,12 +481,12 @@ export default class extends Controller {
 - [ ] **Step 2: Run the full gem suite to confirm nothing broke**
 
 Run: `cd gem && mise exec -- bundle exec rake`
-Expected: unchanged — `262 runs, ... 0 failures, 0 errors`, `no offenses detected` (this file isn't Ruby, so `rake` won't execute it, but it must not break file discovery — `gem/test/test_helper.rb`'s `Dir.glob("lib/ruby_ui/**/*.rb")` only globs `.rb` files, so the `.js` file is inert here by design).
+Expected: unchanged — `262 runs, ... 0 failures, 0 errors`, `no offenses detected` (this file isn't Ruby, so `rake` won't execute it, but it must not break file discovery — `gem/test/test_helper.rb`'s `Dir.glob("lib/pixel_ruby/**/*.rb")` only globs `.rb` files, so the `.js` file is inert here by design).
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add gem/lib/ruby_ui/input_otp/input_otp_controller.js
+git add gem/lib/pixel_ruby/input_otp/input_otp_controller.js
 git commit -m "[Feature] Add InputOtp Stimulus controller"
 ```
 
@@ -495,15 +495,15 @@ git commit -m "[Feature] Add InputOtp Stimulus controller"
 ### Task 5: Gem docs template (`input_otp_docs.rb`)
 
 **Files:**
-- Create: `gem/lib/ruby_ui/input_otp/input_otp_docs.rb`
+- Create: `gem/lib/pixel_ruby/input_otp/input_otp_docs.rb`
 
 **Interfaces:**
-- Produces: `Views::Docs::InputOtp`, a Phlex view class. Excluded from the test loader (`gem/test/test_helper.rb` rejects `_docs.rb` files) and excluded from the consumer-app generator by default (`gem/lib/generators/ruby_ui/component_generator.rb` filters `_docs.rb` files unless `--with-docs` is passed) — this file is documentation-as-installable-template, not exercised by `rake test`.
+- Produces: `Views::Docs::InputOtp`, a Phlex view class. Excluded from the test loader (`gem/test/test_helper.rb` rejects `_docs.rb` files) and excluded from the consumer-app generator by default (`gem/lib/generators/pixel_ruby/component_generator.rb` filters `_docs.rb` files unless `--with-docs` is passed) — this file is documentation-as-installable-template, not exercised by `rake test`.
 - This file's content must be byte-identical to `docs/app/views/docs/input_otp.rb` created in Task 6 (matches the established `masked_input` precedent, verified via `diff` — both copies are intentionally kept in sync).
 
 - [ ] **Step 1: Write the file**
 
-Create `gem/lib/ruby_ui/input_otp/input_otp_docs.rb`:
+Create `gem/lib/pixel_ruby/input_otp/input_otp_docs.rb`:
 
 ```ruby
 # frozen_string_literal: true
@@ -573,7 +573,7 @@ class Views::Docs::InputOtp < Views::Base
 
       Heading(level: 2) { "Reacting to completion" }
 
-      Text { "The controller dispatches a ruby-ui--input-otp:complete custom event (detail: { value }) once the value reaches length characters, and a ruby-ui--input-otp:input event on every change. Wire a Stimulus action on a parent element to react — for example, to auto-submit a form:" }
+      Text { "The controller dispatches a pixel-ruby--input-otp:complete custom event (detail: { value }) once the value reaches length characters, and a pixel-ruby--input-otp:input event on every change. Wire a Stimulus action on a parent element to react — for example, to auto-submit a form:" }
 
       Codeblock(<<~JS, syntax: :javascript)
         // app/javascript/controllers/otp_form_controller.js
@@ -587,7 +587,7 @@ class Views::Docs::InputOtp < Views::Base
       JS
 
       Codeblock(<<~HTML, syntax: :html)
-        <form data-controller="otp-form" data-action="ruby-ui--input-otp:complete->otp-form#submit">
+        <form data-controller="otp-form" data-action="pixel-ruby--input-otp:complete->otp-form#submit">
           <!-- InputOtp(...) here -->
         </form>
       HTML
@@ -608,7 +608,7 @@ Expected: still `262 runs, ... 0 failures, 0 errors`, `no offenses detected` —
 - [ ] **Step 3: Commit**
 
 ```bash
-git add gem/lib/ruby_ui/input_otp/input_otp_docs.rb
+git add gem/lib/pixel_ruby/input_otp/input_otp_docs.rb
 git commit -m "[Documentation] Add InputOtp docs template"
 ```
 
@@ -618,7 +618,7 @@ git commit -m "[Documentation] Add InputOtp docs template"
 
 **Files:**
 - Create: `docs/app/views/docs/input_otp.rb` (identical copy of Task 5's file, just confirm it stays byte-identical)
-- Create: `docs/app/javascript/controllers/ruby_ui/input_otp_controller.js` (identical copy of Task 4's file)
+- Create: `docs/app/javascript/controllers/pixel_ruby/input_otp_controller.js` (identical copy of Task 4's file)
 - Modify: `docs/app/javascript/controllers/index.js`
 - Modify: `docs/app/controllers/docs_controller.rb`
 - Modify: `docs/config/routes.rb`
@@ -626,23 +626,23 @@ git commit -m "[Documentation] Add InputOtp docs template"
 - Modify: `docs/app/lib/site_files.rb`
 
 **Interfaces:**
-- Consumes: `Views::Docs::InputOtp` (Task 5), `ruby-ui--input-otp` controller (Task 4).
+- Consumes: `Views::Docs::InputOtp` (Task 5), `pixel-ruby--input-otp` controller (Task 4).
 - Produces: route `docs_input_otp_path` → `GET /docs/input_otp` → `DocsController#input_otp` → renders `Views::Docs::InputOtp.new`; sidebar entry "Input OTP"; registered Stimulus controller so the JS actually runs in the docs app (the gem's autoloader only loads `.rb` files directly from the gem path — `.js` controllers must be physically present under `docs/app/javascript/controllers/`, confirmed by the existing `masked_input_controller.js` being duplicated there).
 
 - [ ] **Step 1: Copy the docs view**
 
 ```bash
-cp gem/lib/ruby_ui/input_otp/input_otp_docs.rb docs/app/views/docs/input_otp.rb
-diff gem/lib/ruby_ui/input_otp/input_otp_docs.rb docs/app/views/docs/input_otp.rb
+cp gem/lib/pixel_ruby/input_otp/input_otp_docs.rb docs/app/views/docs/input_otp.rb
+diff gem/lib/pixel_ruby/input_otp/input_otp_docs.rb docs/app/views/docs/input_otp.rb
 ```
 Expected: `diff` prints nothing (files identical).
 
 - [ ] **Step 2: Copy the Stimulus controller**
 
 ```bash
-mkdir -p docs/app/javascript/controllers/ruby_ui
-cp gem/lib/ruby_ui/input_otp/input_otp_controller.js docs/app/javascript/controllers/ruby_ui/input_otp_controller.js
-diff gem/lib/ruby_ui/input_otp/input_otp_controller.js docs/app/javascript/controllers/ruby_ui/input_otp_controller.js
+mkdir -p docs/app/javascript/controllers/pixel_ruby
+cp gem/lib/pixel_ruby/input_otp/input_otp_controller.js docs/app/javascript/controllers/pixel_ruby/input_otp_controller.js
+diff gem/lib/pixel_ruby/input_otp/input_otp_controller.js docs/app/javascript/controllers/pixel_ruby/input_otp_controller.js
 ```
 Expected: `diff` prints nothing.
 
@@ -651,14 +651,14 @@ Expected: `diff` prints nothing.
 In `docs/app/javascript/controllers/index.js`, insert between the existing `HoverCard` block and the `MaskedInput` block (alphabetical placement, matches surrounding convention):
 
 ```js
-import RubyUi__HoverCardController from "./ruby_ui/hover_card_controller"
-application.register("ruby-ui--hover-card", RubyUi__HoverCardController)
+import PixelRuby__HoverCardController from "./pixel_ruby/hover_card_controller"
+application.register("pixel-ruby--hover-card", PixelRuby__HoverCardController)
 
-import RubyUi__InputOtpController from "./ruby_ui/input_otp_controller"
-application.register("ruby-ui--input-otp", RubyUi__InputOtpController)
+import PixelRuby__InputOtpController from "./pixel_ruby/input_otp_controller"
+application.register("pixel-ruby--input-otp", PixelRuby__InputOtpController)
 
-import RubyUi__MaskedInputController from "./ruby_ui/masked_input_controller"
-application.register("ruby-ui--masked-input", RubyUi__MaskedInputController)
+import PixelRuby__MaskedInputController from "./pixel_ruby/masked_input_controller"
+application.register("pixel-ruby--masked-input", PixelRuby__MaskedInputController)
 ```
 
 - [ ] **Step 4: Add the controller action**
@@ -717,7 +717,7 @@ Expected: prints the new `docs_input_otp GET /docs/input_otp docs#input_otp` lin
 - [ ] **Step 9: Commit**
 
 ```bash
-git add docs/app/views/docs/input_otp.rb docs/app/javascript/controllers/ruby_ui/input_otp_controller.js docs/app/javascript/controllers/index.js docs/app/controllers/docs_controller.rb docs/config/routes.rb docs/app/components/shared/components_list.rb docs/app/lib/site_files.rb
+git add docs/app/views/docs/input_otp.rb docs/app/javascript/controllers/pixel_ruby/input_otp_controller.js docs/app/javascript/controllers/index.js docs/app/controllers/docs_controller.rb docs/config/routes.rb docs/app/components/shared/components_list.rb docs/app/lib/site_files.rb
 git commit -m "[Feature] Wire InputOtp into the docs site"
 ```
 
@@ -765,8 +765,8 @@ Copy a 6-digit string (e.g. from a text editor), click slot 1, paste. Confirm al
 
 Open the browser devtools console on the docs page and run:
 ```js
-document.querySelector('[data-controller="ruby-ui--input-otp"]')
-  .addEventListener('ruby-ui--input-otp:complete', (e) => console.log('complete', e.detail))
+document.querySelector('[data-controller="pixel-ruby--input-otp"]')
+  .addEventListener('pixel-ruby--input-otp:complete', (e) => console.log('complete', e.detail))
 ```
 Then type a full 6-digit code into the first example's slots. Confirm `complete {value: "..."}` is logged exactly once when the 6th digit lands.
 

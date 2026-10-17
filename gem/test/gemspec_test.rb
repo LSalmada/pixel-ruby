@@ -14,7 +14,7 @@ class GemspecTest < Minitest::Test
 
     offenders = files.reject { |f| allowed?(f) }
     assert_empty offenders, <<~MSG
-      ruby_ui.gemspec packaged unexpected files. The gemspec's
+      pixel_ruby.gemspec packaged unexpected files. The gemspec's
       s.files allowlist must keep these out of the published gem
       (e.g. files from docs/, test/, .github/, Gemfile, etc.):
 
@@ -38,9 +38,9 @@ class GemspecTest < Minitest::Test
 
   def build_and_list_files
     Dir.mktmpdir do |tmpdir|
-      gem_path = File.join(tmpdir, "ruby_ui.gem")
+      gem_path = File.join(tmpdir, "pixel_ruby.gem")
       Dir.chdir(GEM_ROOT) do
-        output = `gem build ruby_ui.gemspec --output #{gem_path} 2>&1`
+        output = `gem build pixel_ruby.gemspec --output #{gem_path} 2>&1`
         raise "gem build failed:\n#{output}" unless $?.success?
       end
       Gem::Package.new(gem_path).contents

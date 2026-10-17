@@ -3,9 +3,9 @@
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 
-@source "../../../../gem/lib/ruby_ui";
+@source "../../../../gem/lib/pixel_ruby";
 
-/* Safelist classes from RubyUI gem components rendered by the docs app. */
+/* Safelist classes from PixelRuby gem components rendered by the docs app. */
 @source inline("dark:inline-block");
 
 @import "tw-animate-css";
@@ -48,7 +48,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  /* ruby_ui specific */
+  /* pixel_ruby specific */
   --warning: hsl(38 92% 50%);
   --warning-foreground: hsl(0 0% 100%);
   --success: hsl(87 100% 37%);
@@ -89,7 +89,7 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 
-  /* ruby_ui specific */
+  /* pixel_ruby specific */
   --warning: hsl(38 92% 50%);
   --warning-foreground: hsl(0 0% 100%);
   --success: hsl(84 81% 44%);
@@ -134,7 +134,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* ruby_ui specific */
+  /* pixel_ruby specific */
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
   --color-success: var(--success);

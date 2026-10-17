@@ -1,1 +1,0 @@
-../../../../../gem/lib/ruby_ui/sidebar/sidebar_controller.js

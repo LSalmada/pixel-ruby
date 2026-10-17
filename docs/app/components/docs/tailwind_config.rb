@@ -17,12 +17,12 @@ module Components
 
       def tailwind_config
         <<~CODE
-          // For importing tailwind styles from ruby_ui gem
+          // For importing tailwind styles from pixel_ruby gem
           const execSync = require('child_process').execSync;
 
-          // Import ruby_ui gem path (To make sure Tailwind loads classes used by ruby_ui gem)
-          const outputRUBYUI = execSync('bundle show ruby_ui', { encoding: 'utf-8' });
-          const ruby_ui_path = outputRUBYUI.trim() + '/**/*.rb';
+          // Import pixel_ruby gem path (To make sure Tailwind loads classes used by pixel_ruby gem)
+          const outputRUBYUI = execSync('bundle show pixel_ruby', { encoding: 'utf-8' });
+          const pixel_ruby_path = outputRUBYUI.trim() + '/**/*.rb';
 
           const defaultTheme = require('tailwindcss/defaultTheme')
 
@@ -33,7 +33,7 @@ module Components
               './app/helpers/**/*.rb',
               './app/assets/stylesheets/**/*.css',
               './app/javascript/**/*.js',
-              ruby_ui_path
+              pixel_ruby_path
             ],
             theme: {
               container: {

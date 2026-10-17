@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/avatar/avatar_controller.js

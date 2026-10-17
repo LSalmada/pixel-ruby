@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "ruby_ui"
+require "pixel_ruby"
 require "phlex"
 require "json"
 require "securerandom"
 require "minitest/autorun"
 
-module RubyUI
+module PixelRuby
   extend Phlex::Kit
 
-  Dir.glob("lib/ruby_ui/**/*.rb").reject { |f| f.include?("/docs/") || f.end_with?("_docs.rb") }.map do |path|
+  Dir.glob("lib/pixel_ruby/**/*.rb").reject { |f| f.include?("/docs/") || f.end_with?("_docs.rb") }.map do |path|
     class_name = path.split("/").last.delete_suffix(".rb").split("_").map(&:capitalize).join.to_sym
 
     autoload class_name, path

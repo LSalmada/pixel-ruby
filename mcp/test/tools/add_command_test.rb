@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require "ruby_ui/mcp/tools/get_add_command_for_items"
+require "pixel_ruby/mcp/tools/get_add_command_for_items"
 
 class AddCommandToolTest < Minitest::Test
   def setup
-    @registry = RubyUI::MCP::Registry.load(TestSupport::FIXTURE_PATH)
-    @tool = RubyUI::MCP::Tools::GetAddCommandForItems.new(registry: @registry)
+    @registry = PixelRuby::MCP::Registry.load(TestSupport::FIXTURE_PATH)
+    @tool = PixelRuby::MCP::Tools::GetAddCommandForItems.new(registry: @registry)
   end
 
   def test_returns_structured_and_string_form
     result = @tool.call(items: ["Button", "Dialog"])
-    assert_equal "ruby_ui:component", result[:generator]
+    assert_equal "pixel_ruby:component", result[:generator]
     assert_equal ["Button", "Dialog"], result[:components]
-    assert_equal "rails g ruby_ui:component Button Dialog", result[:command_string]
+    assert_equal "rails g pixel_ruby:component Button Dialog", result[:command_string]
   end
 
   def test_filters_unknown_names

@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/data_table/data_table_column_visibility_controller.js

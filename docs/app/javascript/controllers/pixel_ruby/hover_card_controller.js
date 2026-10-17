@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/hover_card/hover_card_controller.js

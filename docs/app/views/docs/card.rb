@@ -12,7 +12,7 @@ class Views::Docs::Card < Views::Base
         <<~RUBY
           Card(class: 'w-96') do
             CardHeader do
-              CardTitle { 'You might like "RubyUI"' }
+              CardTitle { 'You might like "PixelRuby"' }
               CardDescription { "@joeldrapper" }
             end
             CardContent do
@@ -43,7 +43,7 @@ class Views::Docs::Card < Views::Base
               )
             end
             CardHeader do
-              CardTitle { 'Introducing RubyUI' }
+              CardTitle { 'Introducing PixelRuby' }
               CardDescription { "Kickstart your project today!" }
             end
             CardFooter(class: 'flex justify-end') do

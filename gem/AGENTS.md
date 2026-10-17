@@ -1,21 +1,21 @@
 # AGENTS.md
 
-This file provides guidance to AI coding agents working in `gem/` (the gem subproject of the RubyUI monorepo).
+This file provides guidance to AI coding agents working in `gem/` (the gem subproject of the PixelRuby monorepo).
 
 ## Monorepo context
 
 This file lives in `gem/`, one of two sibling projects in the `ruby-ui/ruby_ui` monorepo:
 
-- `gem/` — this directory; the `ruby_ui` gem (Phlex components, generators, tests).
+- `gem/` — this directory; the `pixel_ruby` gem (Phlex components, generators, tests).
 - `docs/` — Rails 8 app that powers https://rubyui.com. Consumes the local gem via `path: "../gem"`.
 
-When you change a component here (`gem/lib/ruby_ui/<component>/`), update the matching documentation view in `docs/app/views/docs/<component>.rb` in the same PR.
+When you change a component here (`gem/lib/pixel_ruby/<component>/`), update the matching documentation view in `docs/app/views/docs/<component>.rb` in the same PR.
 
 ## Project Overview
 
-RubyUI is a Ruby gem providing a collection of Phlex-based UI components for Rails applications. It follows a copy-and-paste distribution model (not imported as a runtime dependency). Components use Phlex for rendering, Tailwind CSS for styling (merged via `tailwind_merge`), and Stimulus.js controllers for interactivity.
+PixelRuby is a Ruby gem providing a collection of Phlex-based UI components for Rails applications. It follows a copy-and-paste distribution model (not imported as a runtime dependency). Components use Phlex for rendering, Tailwind CSS for styling (merged via `tailwind_merge`), and Stimulus.js controllers for interactivity.
 
-- **Version:** defined in `lib/ruby_ui.rb`
+- **Version:** defined in `lib/pixel_ruby.rb`
 - **Ruby requirement:** >= 3.2
 - **Docs:** https://rubyui.com/docs/introduction
 
@@ -29,7 +29,7 @@ bundle exec rake
 bundle exec rake test
 
 # Single test file
-bundle exec rake test TEST=test/ruby_ui/button_test.rb
+bundle exec rake test TEST=test/pixel_ruby/button_test.rb
 
 # Linter (StandardRB)
 bundle exec rake standard
@@ -42,12 +42,12 @@ bundle exec standardrb --fix
 
 ### Component Pattern
 
-Every component extends `RubyUI::Base < Phlex::HTML` (`lib/ruby_ui/base.rb`). Base provides:
+Every component extends `PixelRuby::Base < Phlex::HTML` (`lib/pixel_ruby/base.rb`). Base provides:
 - `default_attrs` — override to set default HTML attributes/Tailwind classes
 - `@attrs` — merged user attrs + defaults, with Tailwind classes intelligently merged via `TailwindMerge::Merger`
 - Phlex `mix` helper combines attribute hashes
 
-Typical component structure in `lib/ruby_ui/<component_name>/`:
+Typical component structure in `lib/pixel_ruby/<component_name>/`:
 - `<component>.rb` — the component class with `view_template` method
 - `<component>_docs.rb` — documentation/usage examples (excluded from tests)
 - `<component>_controller.js` — optional Stimulus controller for interactivity
@@ -59,31 +59,31 @@ Components use Phlex DSL for rendering (e.g., `button(**attrs, &)` in `view_temp
 Tests use **Minitest** and extend `ComponentTest` (defined in `test/test_helper.rb`). The `phlex` helper renders components to HTML strings for assertion:
 
 ```ruby
-class RubyUI::ButtonTest < ComponentTest
+class PixelRuby::ButtonTest < ComponentTest
   def test_render_with_all_items
-    output = phlex { RubyUI.Button(variant: :primary) { "Primary" } }
+    output = phlex { PixelRuby.Button(variant: :primary) { "Primary" } }
     assert_match(/Primary/, output)
   end
 end
 ```
 
-Components are invoked via `RubyUI.<ComponentName>()` through Phlex::Kit.
+Components are invoked via `PixelRuby.<ComponentName>()` through Phlex::Kit.
 
 ### Generator System
 
-Rails generators in `lib/generators/ruby_ui/` handle installation into consumer apps:
-- `ruby_ui:install` — sets up base component, dependencies, initializer
-- `ruby_ui:component <Name>` — copies a specific component into the app
-- `ruby_ui:component:all` — copies all components
+Rails generators in `lib/generators/pixel_ruby/` handle installation into consumer apps:
+- `pixel_ruby:install` — sets up base component, dependencies, initializer
+- `pixel_ruby:component <Name>` — copies a specific component into the app
+- `pixel_ruby:component:all` — copies all components
 - `dependencies.yml` — maps each component to its required gems, JS packages, and other components
 
 ### JavaScript
 
 Stimulus controllers live alongside their Ruby components. JS dependencies (Chart.js, Embla, Floating UI, etc.) are declared in `package.json` and mapped per-component in `dependencies.yml`.
 
-`docs/` symlinks straight to these `*_controller.js` files (`docs/app/javascript/controllers/ruby_ui/`) — no independent copy. Editing a controller here is editing what the live docs site serves too.
+`docs/` symlinks straight to these `*_controller.js` files (`docs/app/javascript/controllers/pixel_ruby/`) — no independent copy. Editing a controller here is editing what the live docs site serves too.
 
-When writing or reviewing a Stimulus controller, follow the **`ruby-ui-stimulus`** skill (`.claude/skills/ruby-ui-stimulus/` at the monorepo root) — it covers controller lifecycle/guardrails and the ruby_ui wiring conventions. Quick rules: identifier is `ruby-ui--<component>`; wire it from the Phlex component via `data:` in `default_attrs` (no custom helper); keep `connect`/`disconnect` symmetric; register in the manifest with `rake stimulus:manifest:update` (esbuild/webpack; importmap eager-loads); declare new JS packages in both `package.json` and `dependencies.yml`.
+When writing or reviewing a Stimulus controller, follow the **`pixel-ruby-stimulus`** skill (`.claude/skills/pixel-ruby-stimulus/` at the monorepo root) — it covers controller lifecycle/guardrails and the pixel_ruby wiring conventions. Quick rules: identifier is `pixel-ruby--<component>`; wire it from the Phlex component via `data:` in `default_attrs` (no custom helper); keep `connect`/`disconnect` symmetric; register in the manifest with `rake stimulus:manifest:update` (esbuild/webpack; importmap eager-loads); declare new JS packages in both `package.json` and `dependencies.yml`.
 
 ## CI
 

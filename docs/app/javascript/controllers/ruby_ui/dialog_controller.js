@@ -1,1 +1,0 @@
-../../../../../gem/lib/ruby_ui/dialog/dialog_controller.js

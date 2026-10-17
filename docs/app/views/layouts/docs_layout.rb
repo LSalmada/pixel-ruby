@@ -23,7 +23,7 @@ module Views
             end
             render Shared::Footer.new
             render Shared::Flashes.new(notice: flash[:notice], alert: flash[:alert])
-            render RubyUI::ToastRegion.new
+            render PixelRuby::ToastRegion.new
           end
         end
       end

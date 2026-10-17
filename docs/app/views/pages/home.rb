@@ -17,8 +17,8 @@ class Views::Pages::Home < Views::Base
           [
             "Build sharp Ruby interfaces.",
             "Reusable UI components for Ruby developers.",
-            "Pure Ruby UI, built with Phlex.",
-            "Elevate your Rails apps with RubyUI.",
+            "Pure Pixel Ruby, built with Phlex.",
+            "Elevate your Rails apps with PixelRuby.",
             "The sharpest way to build in Ruby."
           ].sample
         end

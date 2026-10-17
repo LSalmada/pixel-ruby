@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
+require "fileutils"
+require "pixel_ruby/mcp/builders/registry_builder"
+
+gem_path = ENV["PIXEL_RUBY_GEM_PATH"] || File.expand_path("../../gem", __dir__)
+out = File.expand_path("../data/registry.json", __dir__)
+FileUtils.mkdir_p(File.dirname(out))
+PixelRuby::MCP::Builders::RegistryBuilder.new(gem_path: gem_path).write(out)
+puts "Wrote #{out}"

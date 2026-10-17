@@ -1,1 +1,0 @@
-../../../../../gem/lib/ruby_ui/chart/chart_controller.js

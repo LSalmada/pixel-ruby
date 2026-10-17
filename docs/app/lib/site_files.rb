@@ -9,7 +9,7 @@ class SiteFiles
     {
       title: "Introduction",
       path: "/docs/introduction",
-      description: "Overview of RubyUI, its Phlex, Tailwind CSS, and Stimulus foundations, and its design goals.",
+      description: "Overview of PixelRuby, its Phlex, Tailwind CSS, and Stimulus foundations, and its design goals.",
       priority: 0.9,
       changefreq: "weekly"
     },
@@ -23,56 +23,56 @@ class SiteFiles
     {
       title: "Rails - JS Bundler",
       path: "/docs/installation/rails_bundler",
-      description: "Install RubyUI in a Rails app that uses JavaScript bundling.",
+      description: "Install PixelRuby in a Rails app that uses JavaScript bundling.",
       priority: 0.8,
       changefreq: "monthly"
     },
     {
       title: "Rails - Importmaps",
       path: "/docs/installation/rails_importmaps",
-      description: "Install RubyUI in a Rails app that uses import maps.",
+      description: "Install PixelRuby in a Rails app that uses import maps.",
       priority: 0.8,
       changefreq: "monthly"
     },
     {
       title: "Theming",
       path: "/docs/theming",
-      description: "Use CSS variables and shadcn/ui-compatible theme tokens with RubyUI.",
+      description: "Use CSS variables and shadcn/ui-compatible theme tokens with PixelRuby.",
       priority: 0.8,
       changefreq: "monthly"
     },
     {
       title: "Dark mode",
       path: "/docs/dark_mode",
-      description: "Configure dark mode with the Tailwind CSS class strategy and RubyUI theme toggle.",
+      description: "Configure dark mode with the Tailwind CSS class strategy and PixelRuby theme toggle.",
       priority: 0.8,
       changefreq: "monthly"
     },
     {
       title: "Customizing components",
       path: "/docs/customizing_components",
-      description: "Adapt generated RubyUI components when theme-level customization is not enough.",
+      description: "Adapt generated PixelRuby components when theme-level customization is not enough.",
       priority: 0.8,
       changefreq: "monthly"
     },
     {
       title: "Components",
       path: "/docs/components",
-      description: "Catalog of available RubyUI components.",
+      description: "Catalog of available PixelRuby components.",
       priority: 0.9,
       changefreq: "weekly"
     },
     {
       title: "Changelog",
       path: "/docs/changelog",
-      description: "Recent RubyUI component and documentation changes.",
+      description: "Recent PixelRuby component and documentation changes.",
       priority: 0.6,
       changefreq: "weekly"
     },
     {
       title: "MCP Server",
       path: "/docs/mcp",
-      description: "Connect AI agents to Ruby UI components, source, examples, and install commands via the Model Context Protocol.",
+      description: "Connect AI agents to Pixel Ruby components, source, examples, and install commands via the Model Context Protocol.",
       priority: 0.8,
       changefreq: "monthly"
     }
@@ -138,7 +138,7 @@ class SiteFiles
     {
       title: "Data Table Demo",
       path: "/docs/data_table_demo",
-      description: "Interactive data table example using RubyUI table primitives.",
+      description: "Interactive data table example using PixelRuby table primitives.",
       priority: 0.5,
       changefreq: "monthly"
     },
@@ -160,9 +160,9 @@ class SiteFiles
 
   SITE_PAGES = [
     {
-      title: "RubyUI",
+      title: "PixelRuby",
       path: "/",
-      description: "Home page for RubyUI, a UI component library for Ruby developers.",
+      description: "Home page for PixelRuby, a UI component library for Ruby developers.",
       priority: 1.0,
       changefreq: "weekly"
     },
@@ -179,12 +179,12 @@ class SiteFiles
     {
       title: "GitHub repository",
       url: "https://github.com/ruby-ui/ruby_ui",
-      description: "Source code for the RubyUI gem and documentation app."
+      description: "Source code for the PixelRuby gem and documentation app."
     },
     {
       title: "RubyGems package",
       url: "https://rubygems.org/gems/ruby_ui",
-      description: "Published ruby_ui gem package."
+      description: "Published pixel_ruby gem package."
     }
   ].freeze
 
@@ -194,11 +194,11 @@ class SiteFiles
 
   def llms_txt
     lines = [
-      "# RubyUI",
+      "# PixelRuby",
       "",
       "> Beautifully designed, accessible, customizable UI components for Ruby and Rails apps, built with Phlex, Tailwind CSS, and Stimulus.",
       "",
-      "RubyUI is a development-time gem for generating or copying reusable Ruby UI components into an application. The generated code belongs to the host app and can be customized directly. Documentation pages usually contain live examples, code snippets, setup instructions, and source file references.",
+      "PixelRuby is a development-time gem for generating or copying reusable Pixel Ruby components into an application. The generated code belongs to the host app and can be customized directly. Documentation pages usually contain live examples, code snippets, setup instructions, and source file references.",
       "",
       "Use the core docs first for installation, theming, dark mode, and customization context. Use component docs when you need exact component APIs, examples, and related source files. Use llms-full.txt when a single expanded reference is more useful than a curated link map.",
       "",
@@ -220,8 +220,8 @@ class SiteFiles
       "",
       "## Optional",
       "",
-      "- [Full LLM reference](#{absolute_url("/llms-full.txt")}): Expanded single-file overview of RubyUI installation, conventions, and component catalog.",
-      "- [Sitemap](#{absolute_url("/sitemap.xml")}): XML sitemap for public RubyUI pages."
+      "- [Full LLM reference](#{absolute_url("/llms-full.txt")}): Expanded single-file overview of PixelRuby installation, conventions, and component catalog.",
+      "- [Sitemap](#{absolute_url("/sitemap.xml")}): XML sitemap for public PixelRuby pages."
     ]
 
     "#{lines.join("\n")}\n"
@@ -229,16 +229,16 @@ class SiteFiles
 
   def llms_full_txt
     lines = [
-      "# RubyUI Full LLM Reference",
+      "# PixelRuby Full LLM Reference",
       "",
-      "> RubyUI provides accessible, customizable UI components for Ruby and Rails applications. It is built on Phlex for Ruby-rendered views, Tailwind CSS for styling, and Stimulus for small client-side behaviors.",
+      "> PixelRuby provides accessible, customizable UI components for Ruby and Rails applications. It is built on Phlex for Ruby-rendered views, Tailwind CSS for styling, and Stimulus for small client-side behaviors.",
       "",
       "This file expands the curated /llms.txt map into a compact reference that can be loaded as one document. It is intentionally prose-heavy and link-rich so language models can answer common questions without crawling the whole documentation site.",
       "",
       "## Product model",
       "",
-      "- RubyUI is distributed as the `ruby_ui` gem.",
-      "- RubyUI is intended primarily for development-time generation and copy-paste workflows.",
+      "- PixelRuby is distributed as the `pixel_ruby` gem.",
+      "- PixelRuby is intended primarily for development-time generation and copy-paste workflows.",
       "- Components are Ruby classes that render HTML through Phlex.",
       "- Styling uses Tailwind CSS utilities and CSS variables.",
       "- Interactive components use lightweight Stimulus controllers.",
@@ -246,9 +246,9 @@ class SiteFiles
       "",
       "## Common installation workflow",
       "",
-      "1. Add the gem to a Rails application with `bundle add ruby_ui --group development --require false`.",
-      "2. Run `bin/rails g ruby_ui:install` to install RubyUI support files.",
-      "3. Generate a component with `bin/rails g ruby_ui:component ComponentName`, for example `bin/rails g ruby_ui:component Button`.",
+      "1. Add the gem to a Rails application with `bundle add pixel_ruby --group development --require false`.",
+      "2. Run `bin/rails g pixel_ruby:install` to install PixelRuby support files.",
+      "3. Generate a component with `bin/rails g pixel_ruby:component ComponentName`, for example `bin/rails g pixel_ruby:component Button`.",
       "4. Customize generated Ruby, Tailwind classes, and Stimulus controllers inside the host app as needed.",
       "",
       "## Important implementation notes",
@@ -273,7 +273,7 @@ class SiteFiles
       "",
       "## Themes",
       "",
-      "- [Themes](#{absolute_url("/themes/default")}): Preview and copy hand-picked themes that are compatible with RubyUI and shadcn/ui token conventions.",
+      "- [Themes](#{absolute_url("/themes/default")}): Preview and copy hand-picked themes that are compatible with PixelRuby and shadcn/ui token conventions.",
       "",
       "## External resources",
       "",

@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/collapsible/collapsible_controller.js

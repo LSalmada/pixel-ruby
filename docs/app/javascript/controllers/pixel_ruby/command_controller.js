@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/command/command_controller.js

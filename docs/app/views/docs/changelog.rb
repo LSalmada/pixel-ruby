@@ -7,7 +7,7 @@ class Views::Docs::Changelog < Views::Base
   def view_template
     div(class: "mx-auto max-w-[800px] py-10") do
       h1(class: "scroll-m-24 text-3xl font-semibold tracking-tight sm:text-3xl mb-4") { "Changelog" }
-      p(class: "text-xl text-foreground mb-8") { "Latest updates and announcements from the RubyUI team." }
+      p(class: "text-xl text-foreground mb-8") { "Latest updates and announcements from the PixelRuby team." }
 
       if releases.any?
         div(class: "space-y-12") do

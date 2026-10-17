@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/tooltip/tooltip_controller.js

@@ -1,13 +1,13 @@
 require "rubygems"
 
 module ApplicationHelper
-  def component_files(component, gem_name = "ruby_ui")
+  def component_files(component, gem_name = "pixel_ruby")
     # Find the gem specification
     gem_spec = Gem::Specification.find_by_name(gem_name)
     return [] unless gem_spec
 
     # Construct the path to the component files within the gem
-    component_dir = File.join(gem_spec.gem_dir, "lib", "ruby_ui", camel_to_snake(component))
+    component_dir = File.join(gem_spec.gem_dir, "lib", "pixel_ruby", camel_to_snake(component))
 
     return [] unless Dir.exist?(component_dir)
 
@@ -22,7 +22,7 @@ module ApplicationHelper
 
       name = basename.camelize
       # source = "https://github.com/ruby-ui/ruby_ui/blob/v1/lib/ruby_ui/#{component.to_s.downcase}/#{File.basename(file)}"
-      source = "lib/ruby_ui/#{camel_to_snake(component)}/#{File.basename(file)}"
+      source = "lib/pixel_ruby/#{camel_to_snake(component)}/#{File.basename(file)}"
       built_using = if ext == ".rb"
         :phlex
       else # ".js"

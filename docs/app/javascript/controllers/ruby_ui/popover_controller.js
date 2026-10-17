@@ -1,1 +1,0 @@
-../../../../../gem/lib/ruby_ui/popover/popover_controller.js

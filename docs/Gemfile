@@ -73,7 +73,7 @@ end
 gem "phlex", github: "phlex-ruby/phlex"
 gem "phlex-rails", github: "phlex-ruby/phlex-rails"
 
-gem "ruby_ui", path: "../gem", require: false
+gem "pixel_ruby", path: "../gem", require: false
 
 gem "pry", "0.16.0"
 
@@ -82,4 +82,4 @@ gem "rss", "0.3.3"
 
 gem "rouge", "~> 5.1"
 
-gem "ruby_ui-mcp", path: "../mcp"
+gem "pixel_ruby-mcp", path: "../mcp"

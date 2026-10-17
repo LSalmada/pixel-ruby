@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require "ruby_ui/mcp/tools/search_items_in_registries"
+require "pixel_ruby/mcp/tools/search_items_in_registries"
 
 class SearchItemsToolTest < Minitest::Test
   def setup
-    @registry = RubyUI::MCP::Registry.load(TestSupport::FIXTURE_PATH)
-    @tool = RubyUI::MCP::Tools::SearchItemsInRegistries.new(registry: @registry)
+    @registry = PixelRuby::MCP::Registry.load(TestSupport::FIXTURE_PATH)
+    @tool = PixelRuby::MCP::Tools::SearchItemsInRegistries.new(registry: @registry)
   end
 
   def test_finds_by_name

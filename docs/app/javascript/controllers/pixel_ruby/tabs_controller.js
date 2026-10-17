@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/tabs/tabs_controller.js

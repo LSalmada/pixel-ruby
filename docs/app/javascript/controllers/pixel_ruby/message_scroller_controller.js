@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/message_scroller/message_scroller_controller.js

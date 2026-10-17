@@ -2,7 +2,7 @@ require "test_helper"
 
 class RegistryTest < Minitest::Test
   def setup
-    @registry = RubyUI::MCP::Registry.load(TestSupport::FIXTURE_PATH)
+    @registry = PixelRuby::MCP::Registry.load(TestSupport::FIXTURE_PATH)
   end
 
   def test_version

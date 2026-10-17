@@ -3,9 +3,9 @@ module Components
     module Grid
       class Card < Components::Base
         def view_template
-          RubyUI::Card(class: "w-full") do
+          PixelRuby::Card(class: "w-full") do
             CardHeader do
-              CardTitle { 'You might like "RubyUI"' }
+              CardTitle { 'You might like "PixelRuby"' }
               CardDescription { "@joeldrapper" }
             end
             CardContent do

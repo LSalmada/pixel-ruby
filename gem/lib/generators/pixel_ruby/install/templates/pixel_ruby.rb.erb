@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+module PixelRuby
+  extend Phlex::Kit
+end
+
+# Allow using PixelRuby::ComponentName instead Components::PixelRuby::ComponentName
+Rails.autoloaders.main.push_dir(
+  Rails.root.join("app/components/pixel_ruby"), namespace: PixelRuby
+)
+
+# Allow using PixelRuby::ComponentName instead PixelRuby::ComponentName::ComponentName
+Rails.autoloaders.main.collapse(Rails.root.join("app/components/pixel_ruby/*"))

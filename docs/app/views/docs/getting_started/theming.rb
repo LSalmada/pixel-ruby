@@ -8,7 +8,7 @@ class Views::Docs::GettingStarted::Theming < Views::Base
       div(class: "space-y-4") do
         Components.Heading(level: 2) { "Introduction" }
         Text do
-          plain "RubyUI uses CSS Variables like "
+          plain "PixelRuby uses CSS Variables like "
           InlineCode { "--primary: oklch(0.205 0 0)" }
           plain " for theming. This approach is inspired by "
           InlineLink(href: "https://ui.shadcn.com") { "shadcn/ui" }
@@ -25,7 +25,7 @@ class Views::Docs::GettingStarted::Theming < Views::Base
         Components.TypographyList do
           Components.TypographyListItem do
             span(class: "font-medium") { "Easily customisable design " }
-            plain "by updating CSS variables, without having to update the RubyUI component."
+            plain "by updating CSS variables, without having to update the PixelRuby component."
           end
           Components.TypographyListItem do
             span(class: "font-medium") { "Simpler implementation " }
@@ -83,7 +83,7 @@ class Views::Docs::GettingStarted::Theming < Views::Base
         Codeblock(code, syntax: :html)
         Alert(class: "bg-transparent") do
           AlertDescription do
-            span(class: "font-medium") { "RubyUI uses oklch color format" }
+            span(class: "font-medium") { "PixelRuby uses oklch color format" }
             plain ", the same format used by shadcn/ui. See the "
             InlineLink(href: "https://tailwindcss.com/docs/customizing-colors#using-css-variables") { "Tailwind CSS documentation" }
             plain " for more information."
@@ -114,7 +114,7 @@ class Views::Docs::GettingStarted::Theming < Views::Base
       div(class: "space-y-4") do
         Heading(level: 2) { "Color format (oklch)" }
         Text do
-          plain "RubyUI uses "
+          plain "PixelRuby uses "
           InlineLink(href: "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch") { "oklch colors" }
           plain " as the default color format. This is the same format used by "
           InlineLink(href: "https://ui.shadcn.com") { "shadcn/ui" }
@@ -138,15 +138,15 @@ class Views::Docs::GettingStarted::Theming < Views::Base
       div(class: "space-y-4") do
         Heading(level: 2) { "shadcn/ui themes" }
         Text do
-          plain "RubyUI themes use the same CSS variable convention as "
+          plain "PixelRuby themes use the same CSS variable convention as "
           InlineLink(href: "https://ui.shadcn.com") { "shadcn/ui" }
           plain ". This means you can copy themes directly from "
           InlineLink(href: "https://ui.shadcn.com/themes") { "shadcn/ui themes" }
-          plain " and use them in your RubyUI application."
+          plain " and use them in your PixelRuby application."
         end
         Text do
           plain "Visit the "
-          InlineLink(href: "/themes/default") { "RubyUI themes page" }
+          InlineLink(href: "/themes/default") { "PixelRuby themes page" }
           plain " to preview and copy themes, just like you would on shadcn/ui."
         end
       end

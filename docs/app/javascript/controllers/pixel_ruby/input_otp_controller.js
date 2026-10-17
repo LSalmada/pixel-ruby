@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/input_otp/input_otp_controller.js

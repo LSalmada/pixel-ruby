@@ -1,1 +1,0 @@
-../../../../../gem/lib/ruby_ui/data_table/data_table_search_controller.js

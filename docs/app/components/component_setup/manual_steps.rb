@@ -3,7 +3,7 @@ module Components
     class ManualSteps < Components::Base
       def initialize(component_name:)
         @component_name = component_name
-        @dependencies = RubyUI::FileManager.dependencies(@component_name)
+        @dependencies = PixelRuby::FileManager.dependencies(@component_name)
       end
 
       private
@@ -25,20 +25,20 @@ module Components
       end
 
       def component_steps(steps)
-        component_file_paths = RubyUI::FileManager.component_file_paths(component_name)
+        component_file_paths = PixelRuby::FileManager.component_file_paths(component_name)
 
         component_file_paths.each do |component_path|
           component_class = component_path.split("/").last.delete_suffix(".rb").camelcase
           component_file_name = component_path.split("/").last
-          component_code = RubyUI::FileManager.component_code(component_path)
+          component_code = PixelRuby::FileManager.component_code(component_path)
 
           steps.add_step do
             render Steps::Container do
               Text(size: "4", weight: "semibold") do
                 plain "Add "
-                InlineCode(class: "whitespace-nowrap") { "RubyUI::#{component_class}" }
+                InlineCode(class: "whitespace-nowrap") { "PixelRuby::#{component_class}" }
                 plain " to "
-                InlineCode(class: "whitespace-nowrap") { "app/components/ruby_ui/#{component_name.underscore}/#{component_file_name}" }
+                InlineCode(class: "whitespace-nowrap") { "app/components/pixel_ruby/#{component_name.underscore}/#{component_file_name}" }
               end
 
               div(class: "w-full") do
@@ -50,20 +50,20 @@ module Components
       end
 
       def stimulus_controller_steps(steps)
-        stimulus_controller_file_paths = RubyUI::FileManager.stimulus_controller_file_paths(component_name)
+        stimulus_controller_file_paths = PixelRuby::FileManager.stimulus_controller_file_paths(component_name)
 
         return if stimulus_controller_file_paths.empty?
 
         stimulus_controller_file_paths.each do |controller_path|
           controller_file_name = controller_path.split("/").last
-          controller_code = RubyUI::FileManager.component_code(controller_path)
+          controller_code = PixelRuby::FileManager.component_code(controller_path)
           steps.add_step do
             render Steps::Container do
               Text(size: "4", weight: "semibold") do
                 plain "Add "
                 InlineCode(class: "whitespace-nowrap") { controller_file_name }
                 plain " to "
-                InlineCode(class: "whitespace-nowrap") { "app/javascript/controllers/ruby_ui/#{controller_file_name}" }
+                InlineCode(class: "whitespace-nowrap") { "app/javascript/controllers/pixel_ruby/#{controller_file_name}" }
               end
 
               div(class: "w-full") do
@@ -156,7 +156,7 @@ module Components
             Text do
               plain "Component  "
               InlineCode(class: "whitespace-nowrap") { component_name.camelcase }
-              plain " relies on the following RubyUI components. Refer to their individual installation guides for setup instructions:"
+              plain " relies on the following PixelRuby components. Refer to their individual installation guides for setup instructions:"
             end
 
             TypographyList do

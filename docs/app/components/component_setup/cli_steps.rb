@@ -11,14 +11,14 @@ module Components
 
       def view_template
         div(class: "max-w-2xl mx-auto w-full py-10 space-y-6") do
-          Heading(level: 4, class: "pb-4 border-b") { "Using RubyUI CLI" }
+          Heading(level: 4, class: "pb-4 border-b") { "Using PixelRuby CLI" }
 
           Text(size: "4", weight: "semibold") do
             "Run the install command"
           end
 
           code = <<~CODE
-            rails g ruby_ui:component #{component_name.camelcase}
+            rails g pixel_ruby:component #{component_name.camelcase}
           CODE
           div(class: "w-full") do
             Codeblock(code, syntax: :javascript)

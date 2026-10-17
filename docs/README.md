@@ -9,7 +9,7 @@ Phlex looks fun and fast, so I thought I'd start creating ui components with it.
 To contribute to this project, it's recommended to install the gem locally and point to it in your Gemfile:
 
 ```ruby
-gem "ruby_ui", path: "../ruby_ui"
+gem "pixel_ruby", path: "../pixel_ruby"
 ```
 
 ## Working with Components
@@ -18,7 +18,7 @@ gem "ruby_ui", path: "../ruby_ui"
 
 1. Eject the component you want to modify using the generator:
    ```bash
-   rails generate ruby_ui:component combobox
+   rails generate pixel_ruby:component combobox
    ```
 2. Make your desired changes to the ejected component
 3. Once you're satisfied with the modifications, integrate the component back into the gem in the appropriate location

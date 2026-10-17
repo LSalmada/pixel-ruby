@@ -1,1 +1,0 @@
-../../../../../gem/lib/ruby_ui/avatar/avatar_controller.js

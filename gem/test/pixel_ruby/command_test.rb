@@ -1,0 +1,74 @@
+# frozen_string_literal: true
+
+require "test_helper"
+
+class PixelRuby::CommandTest < ComponentTest
+  def test_render_with_all_items
+    components_list = [
+      {name: "Accordion", path: "#"},
+      {name: "Alert", path: "#"},
+      {name: "Alert Dialog", path: "#"},
+      {name: "Aspect Ratio", path: "#"},
+      {name: "Avatar", path: "#"},
+      {name: "Badge", path: "#"}
+    ]
+
+    settings_list = [
+      {name: "Profile", path: "#"},
+      {name: "Mail", path: "#"},
+      {name: "Settings", path: "#"}
+    ]
+
+    output = phlex do
+      PixelRuby.CommandDialog do
+        PixelRuby.CommandDialogTrigger do
+          PixelRuby.Button(variant: "outline", class: "w-56 pr-2 pl-3 justify-between") do |button|
+            button.div(class: "flex items-center space-x-1") do |div|
+              div.span(class: "text-muted-foreground font-normal") do |span|
+                span.plain "Search"
+              end
+            end
+            PixelRuby.ShortcutKey do |shortcut_key|
+              shortcut_key.span(class: "text-xs") { "⌘" }
+              shortcut_key.plain "K"
+            end
+          end
+        end
+        PixelRuby.CommandDialogContent do
+          PixelRuby.Command do
+            PixelRuby.CommandInput(placeholder: "Type a command or search...")
+            PixelRuby.CommandEmpty { "No results found." }
+            PixelRuby.CommandList do
+              PixelRuby.CommandGroup(title: "Components") do
+                components_list.each do |component|
+                  PixelRuby.CommandItem(value: component[:name], href: component[:path]) do |item|
+                    item.plain component[:name]
+                  end
+                end
+              end
+              PixelRuby.CommandGroup(title: "Settings") do
+                settings_list.each do |setting|
+                  PixelRuby.CommandItem(value: setting[:name], href: setting[:path]) do |item|
+                    item.plain setting[:name]
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+
+    assert_match(/Search/, output)
+    assert_match(/data-controller="pixel-ruby--command"/, output)
+  end
+
+  # Removal lands a frame after the animation ends; without a forwards fill mode that frame flashes.
+  def test_content_and_backdrop_hold_the_last_frame_of_the_exit_animation
+    output = phlex do
+      PixelRuby.CommandDialogContent { "command body" }
+    end
+
+    assert_equal 2, output.scan("data-[state=closed]:fill-mode-forwards").size
+  end
+end

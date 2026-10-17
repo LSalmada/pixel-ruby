@@ -173,7 +173,7 @@ class Views::Docs::Form < Views::Base
       Heading(level: 2) { "Rails Integration" }
 
       Text do
-        plain "RubyUI Form components are plain HTML — they work with any form submission strategy. "
+        plain "PixelRuby Form components are plain HTML — they work with any form submission strategy. "
         plain "The recommended approach for Rails apps is to use "
         InlineLink(href: "https://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_with", target: "_blank") { "form_with" }
         plain " to generate the "
@@ -182,7 +182,7 @@ class Views::Docs::Form < Views::Base
         code(class: "font-mono text-sm") { "name" }
         plain " / "
         code(class: "font-mono text-sm") { "id" }
-        plain " attributes to each RubyUI input so the browser serialises them correctly. "
+        plain " attributes to each PixelRuby input so the browser serialises them correctly. "
         plain "Server-side errors can be surfaced by rendering "
         code(class: "font-mono text-sm") { "FormFieldError" }
         plain " with content from "

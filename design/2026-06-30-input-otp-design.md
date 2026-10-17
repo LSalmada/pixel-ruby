@@ -5,7 +5,7 @@ Status: approved (pending final review)
 
 ## Problem
 
-RubyUI has no OTP / PIN-code input. Reference: [shadcn/ui InputOTP](https://ui.shadcn.com/docs/components/radix/input-otp), built on [`input-otp`](https://github.com/guilhermerodz/input-otp) (React-only). We port the behavior to Phlex + Stimulus — no React dependency available, so this is a from-scratch reimplementation, not a wrapped npm package.
+PixelRuby has no OTP / PIN-code input. Reference: [shadcn/ui InputOTP](https://ui.shadcn.com/docs/components/radix/input-otp), built on [`input-otp`](https://github.com/guilhermerodz/input-otp) (React-only). We port the behavior to Phlex + Stimulus — no React dependency available, so this is a from-scratch reimplementation, not a wrapped npm package.
 
 ## Architecture
 
@@ -23,7 +23,7 @@ Confirmed behavior requirements (these must all work, not just be "supported in 
 ## File layout
 
 ```
-gem/lib/ruby_ui/input_otp/
+gem/lib/pixel_ruby/input_otp/
   input_otp.rb            # root: container div + the real input
   input_otp_group.rb       # div, visual grouping of slots (e.g. 3+3)
   input_otp_slot.rb        # div, index:, renders mirrored char + fake caret
@@ -32,7 +32,7 @@ gem/lib/ruby_ui/input_otp/
   input_otp_docs.rb
 ```
 
-Naming: `InputOtp`, not `InputOTP`. No acronym casing — matches existing precedent (`NativeSelect`, `DataTable`) and avoids a Zeitwerk inflector override in `docs/config/initializers/ruby_ui.rb`.
+Naming: `InputOtp`, not `InputOTP`. No acronym casing — matches existing precedent (`NativeSelect`, `DataTable`) and avoids a Zeitwerk inflector override in `docs/config/initializers/pixel_ruby.rb`.
 
 No new JS package dependency. `input-otp` (the JS package) is React-only, so it can't be wrapped — Stimulus controller reimplements the behavior directly. `animate-caret-blink` is already available via `tw-animate-css`, already a baseline install (other components use `animate-in`/`fade-in-0` etc. the same way), so no new entry in `dependencies.yml`.
 
@@ -60,7 +60,7 @@ end
 - `InputOtpSlot(index:)` — explicit index, same as shadcn's `InputOTPSlot index={n}`. No implicit ordering/context magic.
 - First/last rounded corners are handled per-group automatically via `first:`/`last:` Tailwind pseudo-classes — works because each `InputOtpGroup` is its own flex container.
 
-## Stimulus controller (`ruby-ui--input-otp`)
+## Stimulus controller (`pixel-ruby--input-otp`)
 
 Targets: `input` (the real input), `slot` (each `InputOtpSlot`).
 Values: `length` (Number), `pattern` (String).
@@ -70,7 +70,7 @@ Values: `length` (Number), `pattern` (String).
 - `keydown` → intercept `ArrowLeft`/`ArrowRight`/`ArrowUp`/`ArrowDown`, `preventDefault`, move the selection to the adjacent slot explicitly.
 - `paste` → read `clipboardData`, filter by `pattern`, truncate to `length`, set value, move caret to the end of the pasted content (or to the first empty slot).
 - `focus`/`blur` → toggle a focused state on the container (for ring/outline styling).
-- Dispatches a custom event `ruby-ui--input-otp:complete` (bubbles, `detail: { value }`) when the value reaches `length` characters — this is the Hotwire integration point (e.g. a Stimulus action elsewhere can do `data-action="ruby-ui--input-otp:complete->form#requestSubmit"` to auto-submit). Also dispatches `ruby-ui--input-otp:input` on every change for consumers that want live validation feedback.
+- Dispatches a custom event `pixel-ruby--input-otp:complete` (bubbles, `detail: { value }`) when the value reaches `length` characters — this is the Hotwire integration point (e.g. a Stimulus action elsewhere can do `data-action="pixel-ruby--input-otp:complete->form#requestSubmit"` to auto-submit). Also dispatches `pixel-ruby--input-otp:input` on every change for consumers that want live validation feedback.
 
 Out of scope for v1 (flagged in the GH issue as possible follow-up, not blocking): password-manager badge width-push hack, `<noscript>` CSS fallback, iOS letter-spacing/font hacks from the upstream lib. These are polish from the original React lib's edge-case handling, not core OTP behavior.
 
@@ -81,7 +81,7 @@ Out of scope for v1 (flagged in the GH issue as possible follow-up, not blocking
 - `autocomplete="one-time-code"` on the real input for SMS autofill.
 - `inputmode="numeric"` by default (digits-only pattern); becomes `inputmode="text"` if a custom `pattern` is supplied that isn't digit-only.
 
-## Tests (`gem/test/ruby_ui/input_otp_test.rb`)
+## Tests (`gem/test/pixel_ruby/input_otp_test.rb`)
 
 - Renders the real input with `name`, `value`, `maxlength` matching `length`.
 - Renders the correct number of `InputOtpSlot`s with `aria-hidden`.

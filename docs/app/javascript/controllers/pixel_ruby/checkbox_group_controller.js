@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/checkbox/checkbox_group_controller.js

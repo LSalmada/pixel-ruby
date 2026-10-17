@@ -39,7 +39,7 @@ class ComponentGeneratorTest < Minitest::Test
   end
 
   def test_link_component_docs_file_is_excluded_from_source
-    source_root = File.expand_path("../../lib/ruby_ui", __dir__)
+    source_root = File.expand_path("../../lib/pixel_ruby", __dir__)
     link_dir = File.join(source_root, "link")
 
     all_rb_files = Dir.glob(File.join(link_dir, "*.rb"))
@@ -70,21 +70,21 @@ class ComponentGeneratorTest < Minitest::Test
   end
 
   def test_date_picker_installs_composed_components
-    dependencies_path = File.expand_path("../../lib/generators/ruby_ui/dependencies.yml", __dir__)
+    dependencies_path = File.expand_path("../../lib/generators/pixel_ruby/dependencies.yml", __dir__)
     dependencies = YAML.load_file(dependencies_path)
 
     assert_equal ["Input", "Popover", "Calendar"], dependencies.fetch("date_picker").fetch("components")
   end
 
   def test_tooltip_installs_typography_for_text_component
-    dependencies_path = File.expand_path("../../lib/generators/ruby_ui/dependencies.yml", __dir__)
+    dependencies_path = File.expand_path("../../lib/generators/pixel_ruby/dependencies.yml", __dir__)
     dependencies = YAML.load_file(dependencies_path)
 
     assert_includes dependencies.fetch("tooltip").fetch("components"), "Typography"
   end
 
   def test_resolves_component_folders_for_multiple_components
-    source_root = File.expand_path("../../lib/ruby_ui", __dir__)
+    source_root = File.expand_path("../../lib/pixel_ruby", __dir__)
 
     # Folder names mirror ComponentGenerator's `component_name.underscore`.
     {"Button" => "button", "Link" => "link", "Input" => "input", "Textarea" => "textarea"}.each do |component_name, folder_name|
@@ -96,7 +96,7 @@ class ComponentGeneratorTest < Minitest::Test
   end
 
   def test_validation_collects_all_missing_components
-    source_root = File.expand_path("../../lib/ruby_ui", __dir__)
+    source_root = File.expand_path("../../lib/pixel_ruby", __dir__)
     folder_names = {"Button" => "button", "NotARealComponent" => "not_a_real_component", "AnotherFakeOne" => "another_fake_one"}
 
     missing = folder_names.reject { |_name, folder| Dir.exist?(File.join(source_root, folder)) }.keys

@@ -29,7 +29,7 @@ module Docs
         description: description,
         action_label: action_label
       ).call
-      turbo_stream.append("ruby-ui-toaster", content.html_safe)
+      turbo_stream.append("pixel-ruby-toaster", content.html_safe)
     end
 
     class ToastFragment < Phlex::HTML
@@ -41,16 +41,16 @@ module Docs
       end
 
       def view_template
-        render RubyUI::ToastItem.new(variant: @variant) do
-          render RubyUI::ToastIcon.new(variant: @variant)
+        render PixelRuby::ToastItem.new(variant: @variant) do
+          render PixelRuby::ToastIcon.new(variant: @variant)
           div(class: "flex flex-col gap-1 flex-1 min-w-0") do
-            render RubyUI::ToastTitle.new { @title }
-            render(RubyUI::ToastDescription.new { @description }) if @description
+            render PixelRuby::ToastTitle.new { @title }
+            render(PixelRuby::ToastDescription.new { @description }) if @description
           end
           if @action_label
-            render RubyUI::ToastAction.new(label: @action_label, on: "click->ruby-ui--toast#dismiss")
+            render PixelRuby::ToastAction.new(label: @action_label, on: "click->pixel-ruby--toast#dismiss")
           end
-          render RubyUI::ToastClose.new
+          render PixelRuby::ToastClose.new
         end
       end
     end

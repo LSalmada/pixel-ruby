@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/chart/chart_controller.js

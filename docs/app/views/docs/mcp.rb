@@ -5,7 +5,7 @@ class Views::Docs::Mcp < Views::Base
     div(class: "max-w-2xl mx-auto w-full py-10 space-y-10") do
       render Docs::Header.new(
         title: "MCP Server",
-        description: "Connect AI agents to Ruby UI components, source, examples, and install commands."
+        description: "Connect AI agents to Pixel Ruby components, source, examples, and install commands."
       )
 
       # About MCP
@@ -13,19 +13,19 @@ class Views::Docs::Mcp < Views::Base
         Heading(level: 2) { "About MCP" }
         p(class: "text-foreground/80 leading-relaxed") do
           plain "MCP (Model Context Protocol) is an open standard for connecting AI assistants to external data sources and tools. "
-          plain "Ruby UI exposes an MCP server so your AI agent can list available components, view their source files, search the docs, and generate the exact install command for your app."
+          plain "Pixel Ruby exposes an MCP server so your AI agent can list available components, view their source files, search the docs, and generate the exact install command for your app."
         end
       end
 
       # Setup
       div(class: "space-y-6") do
         Heading(level: 2) { "Setup" }
-        p(class: "text-foreground/80") { "Add the Ruby UI MCP server to your editor or AI client using the snippets below." }
+        p(class: "text-foreground/80") { "Add the Pixel Ruby MCP server to your editor or AI client using the snippets below." }
 
         # Claude Code
         div(class: "space-y-2") do
           Heading(level: 3) { "Claude Code" }
-          Codeblock("claude mcp add --transport http ruby-ui https://www.rubyui.com/mcp", syntax: :shell, clipboard: true)
+          Codeblock("claude mcp add --transport http pixel-ruby https://www.rubyui.com/mcp", syntax: :shell, clipboard: true)
         end
 
         # Cursor
@@ -69,10 +69,10 @@ class Views::Docs::Mcp < Views::Base
         Heading(level: 2) { "Usage" }
         p(class: "text-foreground/80") { "Once connected, ask your agent questions like:" }
         ul(class: "list-disc list-inside space-y-1 text-foreground/80") do
-          li { "Install Button and Dialog from Ruby UI." }
+          li { "Install Button and Dialog from Pixel Ruby." }
           li { "Show me the source of the Card component." }
-          li { "Search Ruby UI for a date input." }
-          li { "Audit my Ruby UI install." }
+          li { "Search Pixel Ruby for a date input." }
+          li { "Audit my Pixel Ruby install." }
         end
       end
 
@@ -106,7 +106,7 @@ class Views::Docs::Mcp < Views::Base
         ul(class: "list-disc list-inside space-y-2 text-foreground/80") do
           li { "Endpoint must be reachable; corporate proxies may block streamable HTTP." }
           li { "If the agent can't find components, ask it to call get_project_registries first." }
-          li { "Run bundle exec rails g ruby_ui:component <Name> only inside a Rails app with ruby_ui in its Gemfile." }
+          li { "Run bundle exec rails g pixel_ruby:component <Name> only inside a Rails app with pixel_ruby in its Gemfile." }
         end
       end
     end
@@ -118,7 +118,7 @@ class Views::Docs::Mcp < Views::Base
     <<~JSON
       {
         "mcpServers": {
-          "ruby-ui": { "url": "https://www.rubyui.com/mcp" }
+          "pixel-ruby": { "url": "https://www.rubyui.com/mcp" }
         }
       }
     JSON
@@ -132,7 +132,7 @@ class Views::Docs::Mcp < Views::Base
     <<~JSON
       {
         "context_servers": {
-          "ruby-ui": { "source": "http", "url": "https://www.rubyui.com/mcp" }
+          "pixel-ruby": { "source": "http", "url": "https://www.rubyui.com/mcp" }
         }
       }
     JSON
@@ -145,9 +145,9 @@ class Views::Docs::Mcp < Views::Base
       ["search_items_in_registries", "Fuzzy search by name, description, or docs."],
       ["view_items_in_registries", "Returns full source files and dependencies."],
       ["get_item_examples_from_registries", "Returns code examples per component."],
-      ["get_add_command_for_items", "Returns a validated rails g ruby_ui:component … command."],
+      ["get_add_command_for_items", "Returns a validated rails g pixel_ruby:component … command."],
       ["get_audit_checklist", "Returns a post-install verification checklist."],
-      ["get_install_command_for_project", "Returns commands to bootstrap ruby_ui in a fresh Rails project."]
+      ["get_install_command_for_project", "Returns commands to bootstrap pixel_ruby in a fresh Rails project."]
     ]
   end
 end

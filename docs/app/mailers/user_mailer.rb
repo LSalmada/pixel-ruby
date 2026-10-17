@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
 
     mail(
       to: @user.email,
-      subject: "Welcome to RubyUI"
+      subject: "Welcome to PixelRuby"
     ) do |format|
       format.html { render Mailers::UserMailer::Welcome.new(user: @user) }
     end

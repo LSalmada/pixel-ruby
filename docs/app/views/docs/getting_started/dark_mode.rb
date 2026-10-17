@@ -7,9 +7,9 @@ class Views::Docs::GettingStarted::DarkMode < Views::Base
 
       div(class: "space-y-4") do
         heading2 { "How it works" }
-        Text { "RubyUI seamlessly integrates dark mode, a crucial feature for modern applications, enhancing user experience and catering to diverse user preferences." }
+        Text { "PixelRuby seamlessly integrates dark mode, a crucial feature for modern applications, enhancing user experience and catering to diverse user preferences." }
         Text do
-          plain "RubyUI is setup to use the "
+          plain "PixelRuby is setup to use the "
           InlineLink(href: "https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually") { "TailwindCSS 'class' strategy" }
           plain ". This means that you can toggle dark mode by adding or removing the "
           InlineCode { "dark" }

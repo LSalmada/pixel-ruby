@@ -2,12 +2,12 @@
 
 require "test_helper"
 require "rack/mock_request"
-require "ruby_ui/mcp/rack_app"
+require "pixel_ruby/mcp/rack_app"
 
 class RackAppTest < Minitest::Test
   def setup
-    registry = RubyUI::MCP::Registry.load(TestSupport::FIXTURE_PATH)
-    @app = RubyUI::MCP::RackApp.new(registry: registry)
+    registry = PixelRuby::MCP::Registry.load(TestSupport::FIXTURE_PATH)
+    @app = PixelRuby::MCP::RackApp.new(registry: registry)
   end
 
   def test_allows_production_host
@@ -32,14 +32,14 @@ class RackAppTest < Minitest::Test
   end
 
   def test_default_allowed_hosts_are_exactly_production_hosts
-    assert_equal ["rubyui.com", "www.rubyui.com"], RubyUI::MCP::RackApp::DEFAULT_ALLOWED_HOSTS
+    assert_equal ["rubyui.com", "www.rubyui.com"], PixelRuby::MCP::RackApp::DEFAULT_ALLOWED_HOSTS
   end
 
   def test_allowed_hosts_extends_via_env_var
-    with_env("RUBY_UI_MCP_ALLOWED_HOSTS" => "staging.rubyui.com, other.example.com") do
+    with_env("PIXEL_RUBY_MCP_ALLOWED_HOSTS" => "staging.rubyui.com, other.example.com") do
       assert_equal(
         ["rubyui.com", "www.rubyui.com", "staging.rubyui.com", "other.example.com"],
-        RubyUI::MCP::RackApp.allowed_hosts
+        PixelRuby::MCP::RackApp.allowed_hosts
       )
     end
   end

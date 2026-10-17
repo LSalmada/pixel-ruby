@@ -62,8 +62,8 @@ class Views::Docs::Sidebar::Example < Views::Base
                   DropdownMenu(options: { strategy: "fixed", placement: "right-start" }) do
                     SidebarMenuAction(
                       data: {
-                        ruby_ui__dropdown_menu_target: "trigger",
-                        action: "click->ruby-ui--dropdown-menu#toggle"
+                        pixel_ruby__dropdown_menu_target: "trigger",
+                        action: "click->pixel-ruby--dropdown-menu#toggle"
                       }
                     ) do
                       ellipsis_icon()
@@ -92,8 +92,8 @@ class Views::Docs::Sidebar::Example < Views::Base
                   DropdownMenu() do
                     SidebarMenuAction(
                       data: {
-                        ruby_ui__dropdown_menu_target: "trigger",
-                        action: "click->ruby-ui--dropdown-menu#toggle"
+                        pixel_ruby__dropdown_menu_target: "trigger",
+                        action: "click->pixel-ruby--dropdown-menu#toggle"
                       }
                     ) do
                       ellipsis_icon()

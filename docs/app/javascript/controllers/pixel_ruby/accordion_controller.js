@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/accordion/accordion_controller.js

@@ -9,7 +9,7 @@ class Views::Docs::GettingStarted::Introduction < Views::Base
         iframe(width: "100%", height: "400", src: "https://www.youtube.com/embed/OQZam7rug00?si=JmZNzS5u194Q0AWQ", title: "YouTube video player", frameborder: "0", class: "rounded-xl border shadow-lg mb-10", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share", allowfullscreen: true)
         Heading(level: 2) { "About" }
         Text do
-          plain "RubyUI is a UI framework for Ruby developers, built on top of "
+          plain "PixelRuby is a UI framework for Ruby developers, built on top of "
           InlineLink(href: "http://phlex.fun") { "Phlex" }
           plain ", "
           InlineLink(href: "https://tailwindcss.com") { "TailwindCSS" }
@@ -21,7 +21,7 @@ class Views::Docs::GettingStarted::Introduction < Views::Base
 
       div(class: "space-y-4") do
         Heading(level: 2) { "Core ingredients" }
-        Text { "RubyUI is built on top of 3 core ingredients: " }
+        Text { "PixelRuby is built on top of 3 core ingredients: " }
         Components.TypographyList do
           Components.TypographyListItem(class: "space-y-2") do
             span(class: "font-bold") { "Phlex" }
@@ -41,7 +41,7 @@ class Views::Docs::GettingStarted::Introduction < Views::Base
       div(class: "space-y-4") do
         Heading(level: 2) { "Design inspiration" }
         Text do
-          plain "RubyUI's component designs are heavily inspired by "
+          plain "PixelRuby's component designs are heavily inspired by "
           InlineLink(href: "https://ui.shadcn.com") { "shadcn/ui" }
           plain ", a beautifully designed collection of React components built on Tailwind CSS. shadcn/ui describes itself as \"The Foundation for your Design System\" - a set of components you can customize, extend, and make your own."
         end
@@ -71,21 +71,21 @@ class Views::Docs::GettingStarted::Introduction < Views::Base
           Avatar(size: :md, class: "border") { img(src: "https://i.pravatar.cc/150?u=george", alt: "George Kettle") }
           div do
             p(class: "text-sm font-medium leading-none") { "George Kettle" }
-            p(class: "text-sm text-muted-foreground") { "Original author of RubyUI" }
+            p(class: "text-sm text-muted-foreground") { "Original author of PixelRuby" }
           end
         end
 
         div(class: "space-y-4") do
-          Heading(level: 2) { "Why I built RubyUI" }
+          Heading(level: 2) { "Why I built PixelRuby" }
           Text do
             plain "Many Ruby developers are familiar with "
             InlineLink(href: "https://rubyonrails.org") { "Rails" }
             plain ", and the "
             InlineLink(href: "https://guides.rubyonrails.org/layouts_and_rendering.html") { "convention over configuration" }
-            plain " approach it takes. RubyUI is built on the same principles, providing a set of components that are easy to use, and easy to customize."
+            plain " approach it takes. PixelRuby is built on the same principles, providing a set of components that are easy to use, and easy to customize."
           end
           Text do
-            plain "RubyUI was born out of a desire for a comprehensive UI framework designed with Ruby developers in mind. While I've previously utilized TailwindUI and other solutions, none seemed to fit just right. The plethora of UI component libraries available for JavaScript frameworks highlighted a gap in the Ruby ecosystem, which RubyUI aims to fill."
+            plain "PixelRuby was born out of a desire for a comprehensive UI framework designed with Ruby developers in mind. While I've previously utilized TailwindUI and other solutions, none seemed to fit just right. The plethora of UI component libraries available for JavaScript frameworks highlighted a gap in the Ruby ecosystem, which PixelRuby aims to fill."
           end
           Text do
             plain "Upon discovering Phlex, it became clear that it was the ideal foundation for such a library. It offered the potential for a powerful, easy-to-use, and customizable component library when paired with StimulusJS. The goal was to create a tool that leverages the strengths of TailwindCSS and StimulusJS, providing Ruby developers with a comprehensive UI solution that is stylable at the HTML level."
@@ -93,7 +93,7 @@ class Views::Docs::GettingStarted::Introduction < Views::Base
         end
 
         div(class: "space-y-4") do
-          Heading(level: 2) { "Goals of RubyUI" }
+          Heading(level: 2) { "Goals of PixelRuby" }
           Components.TypographyList(numbered: true) do
             Components.TypographyListItem { "Create a reusable UI component library specifically for Ruby devs" }
             Components.TypographyListItem { "Enable Ruby devs to create custom and complex UIs without needing to write CSS or JS" }
@@ -129,7 +129,7 @@ class Views::Docs::GettingStarted::Introduction < Views::Base
 
         div(class: "space-y-4") do
           Heading(level: 2) { "Acknowledgments" }
-          Text { "I'd like to thank the following projects and people for helping me build RubyUI" }
+          Text { "I'd like to thank the following projects and people for helping me build PixelRuby" }
           Components.TypographyList do
             Components.TypographyListItem do
               InlineLink(href: "https://github.com/joeldrapper") { "Joel Drapper" }
@@ -137,11 +137,11 @@ class Views::Docs::GettingStarted::Introduction < Views::Base
             end
             Components.TypographyListItem do
               InlineLink(href: "https://phlex.fun") { "Phlex" }
-              plain " - The foundation of RubyUI."
+              plain " - The foundation of PixelRuby."
             end
             Components.TypographyListItem do
               InlineLink(href: "https://ui.shadcn.com") { "shadcn/ui" }
-              plain " - The design inspiration for RubyUI's components and theming system."
+              plain " - The design inspiration for PixelRuby's components and theming system."
             end
             Components.TypographyListItem do
               InlineLink(href: "https://stimulus.hotwired.dev") { "Stimulus JS" }

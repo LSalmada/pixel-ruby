@@ -1,0 +1,1 @@
+../../../../../gem/lib/pixel_ruby/clipboard/clipboard_controller.js
