@@ -3,11 +3,13 @@
 module PixelRuby
   class Button < Base
     BASE_CLASSES = [
-      "whitespace-nowrap inline-flex items-center justify-center rounded-md font-medium transition-colors",
+      "whitespace-nowrap inline-flex items-center justify-center font-pixel leading-none cursor-pointer",
       "disabled:pointer-events-none disabled:opacity-50",
-      "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+      "focus-visible:outline-2 focus-visible:outline-dashed focus-visible:outline-current focus-visible:-outline-offset-8",
       "aria-disabled:pointer-events-none aria-disabled:opacity-50 aria-disabled:cursor-not-allowed"
     ].freeze
+
+    PIXEL_BOX_CLASSES = "border-4 border-foreground pixel-corners pixel-bevel active:pixel-bevel-pressed"
 
     def initialize(type: :button, variant: :primary, size: :md, icon: false, **attrs)
       @type = type
@@ -45,7 +47,8 @@ module PixelRuby
       [
         BASE_CLASSES,
         size_classes,
-        "bg-primary text-primary-foreground shadow",
+        PIXEL_BOX_CLASSES,
+        "bg-primary text-primary-foreground",
         "hover:bg-primary/90"
       ]
     end
@@ -54,7 +57,7 @@ module PixelRuby
       [
         BASE_CLASSES,
         size_classes,
-        "text-primary underline-offset-4",
+        "text-primary underline-offset-4 decoration-2",
         "hover:underline"
       ]
     end
@@ -63,8 +66,9 @@ module PixelRuby
       [
         BASE_CLASSES,
         size_classes,
+        PIXEL_BOX_CLASSES,
         "bg-secondary text-secondary-foreground",
-        "hover:bg-opacity-80"
+        "hover:bg-secondary/80"
       ]
     end
 
@@ -72,9 +76,10 @@ module PixelRuby
       [
         BASE_CLASSES,
         size_classes,
-        "bg-destructive text-white shadow-sm",
-        "[a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20",
-        "dark:focus-visible:ring-destructive/40 dark:bg-destructive/60"
+        PIXEL_BOX_CLASSES,
+        "bg-destructive text-white [--pixel-shade:rgb(0_0_0/0.3)]",
+        "hover:bg-destructive/90",
+        "dark:bg-destructive/60"
       ]
     end
 
@@ -82,7 +87,8 @@ module PixelRuby
       [
         BASE_CLASSES,
         size_classes,
-        "border border-input bg-background shadow-sm",
+        PIXEL_BOX_CLASSES,
+        "bg-background",
         "hover:bg-accent hover:text-accent-foreground"
       ]
     end
@@ -91,6 +97,7 @@ module PixelRuby
       [
         BASE_CLASSES,
         size_classes,
+        "pixel-corners",
         "hover:bg-accent hover:text-accent-foreground"
       ]
     end

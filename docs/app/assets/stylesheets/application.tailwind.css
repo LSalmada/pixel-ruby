@@ -39,6 +39,7 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
+  --pixel: 4px;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -143,6 +144,8 @@
   /* Fonts */
   --font-sans: "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif";
   --font-heading: "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif";
+  --font-pixel: "Silkscreen", ui-monospace, monospace;
+  --font-pixel-body: "VT323", ui-monospace, monospace;
 }
 
 /* Container settings */
@@ -150,6 +153,25 @@
   margin-inline: auto;
   padding-inline: 2rem;
   max-width: 1400px;
+}
+
+/* Pixel art: cuts a --pixel square off each corner for the stepped 8-bit outline */
+@utility pixel-corners {
+  clip-path: polygon(
+    0 var(--pixel), var(--pixel) var(--pixel), var(--pixel) 0,
+    calc(100% - var(--pixel)) 0, calc(100% - var(--pixel)) var(--pixel), 100% var(--pixel),
+    100% calc(100% - var(--pixel)), calc(100% - var(--pixel)) calc(100% - var(--pixel)), calc(100% - var(--pixel)) 100%,
+    var(--pixel) 100%, var(--pixel) calc(100% - var(--pixel)), 0 calc(100% - var(--pixel))
+  );
+}
+
+/* Pixel art: hard inner shade; defaults to a tint of the text color so it works on any background */
+@utility pixel-bevel {
+  box-shadow: inset calc(var(--pixel) * -1) calc(var(--pixel) * -1) 0 0 var(--pixel-shade, color-mix(in oklab, currentColor 25%, transparent));
+}
+
+@utility pixel-bevel-pressed {
+  box-shadow: inset var(--pixel) var(--pixel) 0 0 var(--pixel-shade, color-mix(in oklab, currentColor 25%, transparent));
 }
 
 @layer base {
